@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.phone1img, .phone2img{
+    height: 650px;
+    padding-top: 70px;
+    float: right;
+    margin: 10px;
+    position: absolute;
+}
+.phone1img{
+    z-index: 1;
+}
+.phone2img{
+    left: -170px;
+
+}
+
+.logo-Container
+{
+    width: 200px;
+    border-style: solid;
+    border-color: red;
+}
+.logo-Container img
+{
+    width: 100%;
+    height: 100%;
+}
+body{
+    background-color: #fafafa !important;
+}
+
+.container{
+    margin-top: 20px;
+}
+
+.insta-logo{
+    width: 12rem;
+}
+
+.right-column{
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    width: 350px;
+    margin: 10px;
+    padding: 40px;
+}
+
+.insta-info{
+    font-weight: 600px;
+    line-height: 20px;
+    font-size: 17px;
+    color: #999;
+}
+
+.btn .fbimg{
+    width: 16px;
+}
+.or-text{
+    font-size: 13px !important;
+    color: #999;
+    font-weight: 600;
+}
+
+.or-text::before{
+    content: '';
+    background: #efefef;
+    display: block;
+    height: 2px;
+    width: 110px;
+    position: relative;
+    top: 11px;
+    
+}
+.or-text::after{
+    content: '';
+    background: #efefef;
+    display: block;
+    height: 2px;
+    width: 110px;
+    position: relative;
+    bottom: 10px;
+    left: 160px;
+}
+
+.form-group{
+    margin-bottom: 6px !important;
+}
+
+.form-control{
+    background: #fafafa !important;
+    border: 1px solid #efefef;
+    font-size: 12px !important;
+}
+
+::placeholder{
+    color: #999 !important;
+}
+
+.btn{
+    margin: 12px auto;
+    padding: 2px !important;
+    font-weight: 600 !important;
+}
+
+.btn-primary{
+    background-color: #3897f0;
+    border: 1px solid #3897f0 !important;
+}
+
+.terms-text{
+    line-height: 18px;
+    font-size: 14px;
+    color: #999;
+    margin: 5px 20px;
+}
+
+.login-text{
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    width: 350px;
+    margin: 20px;
+}
+
+.login-text a:hover{
+    text-decoration: none;
+} 
