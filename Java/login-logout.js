@@ -11,9 +11,8 @@ $(document).ready(function() {
             data: { username: username, password: password },
             success: function(response) {
                 if (response === 'success') {
-                    // Redirect to dashboard or update UI as logged in
-                    $('#loginForm').hide();
-                    $('#logoutBtn').show();
+                    // $('#loginForm').hide();
+                    // $('#logoutBtn').show();
                     alert('Login successful!');
                 } else {
                     alert('Login failed. Please check your credentials.');
