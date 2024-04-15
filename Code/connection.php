@@ -10,6 +10,5 @@ $conn = new mysqli($servername, $username, $password, $database);
 
 // Check connection
 if ($conn) {
-    echo 'Conneted Succesfully';
+    // echo 'Conneted Succesfully';
 }
-?>

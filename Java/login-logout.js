@@ -4,25 +4,63 @@ $(document).ready(function() {
         event.preventDefault();
         var username = $('#username').val();
         var password = $('#password').val();
-
-        $.ajax({
-            url: 'login.php', // Backend script for login
-            method: 'POST',
-            data: { username: username, password: password },
-            success: function(response) {
-                if (response === 'success') {
-                    // Redirect to dashboard or update UI as logged in
-                    alert('Login successful!');
-                } else {
-                    alert('Login failed. Please check your credentials.');
+            $.ajax({
+                url: './Code/login.php', // Backend script for login
+                method: 'POST',
+                data: { username: username, password: password },
+                success: function(response) {
+                    if (response === 'success') {
+                        // Redirect to dashboard or update UI as logged in
+                        window.location.href = './Home/Main-Page.html';
+                    } else {
+                        alert('wrong shit');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Error: ' + status + ' - ' + error);
                 }
-            },
-            error: function(xhr, status, error) {
-                alert('Error: ' + status + ' - ' + error);
-            }
-        });
+            });
+       
     });
 });
+
+
+// $(document).ready(function() {
+//     // Login Form Submission
+//     $('.loginForm').submit(function(event) {
+//         event.preventDefault();
+//         var username = $('#username').val();
+//         var password = $('#password').val();
+
+       
+
+//         if(realuser === username && realpassword === password )
+//         {
+//             $.ajax({
+//                 url: './Code/login.php', // Backend script for login
+//                 method: 'POST',
+//                 data: { username: username, password: password },
+//                 success: function(response) {
+//                     if (response === 'access') {
+//                         // Redirect to dashboard or update UI as logged in
+//                         alert('Login successful!');
+//                     } else {
+//                         window.location.href = './Home/Main-Page.html';
+//                     }
+//                 },
+//                 error: function(xhr, status, error) {
+//                     alert('Error: ' + status + ' - ' + error);
+//                 }
+//             });
+//         }
+//         else
+//         {
+//             alert('Wrong Username or Password');
+//         }
+       
+//     });
+// });
+
 
 // $(document).ready(function() {
 //     // Login Form Submission
