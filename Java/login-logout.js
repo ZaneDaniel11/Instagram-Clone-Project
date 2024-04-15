@@ -6,20 +6,22 @@ $(document).ready(function() {
         var password = $('#password').val();
 
         $.ajax({
-            url: '../Code/login.php', // Backend script for login
+            url: '../Code/login.php', // Adjust the URL as needed
             method: 'POST',
             data: { username: username, password: password },
             success: function(response) {
-                if (response === 'success') {
-                    // $('#loginForm').hide();
-                    // $('#logoutBtn').show();
-                    alert('Login successful!');
+                if (response.trim() === 'success') {
+                    window.location.href = '../Home/Main-Page.html'; // Example redirect
                 } else {
                     alert('Login failed. Please check your credentials.');
                 }
+            },
+            error: function(xhr, status, error) {
+                alert('Error: ' + status + ' - ' + error);
             }
         });
     });
+});
 
     // Logout Button Click
     $('#logoutBtn').click(function() {
@@ -34,4 +36,4 @@ $(document).ready(function() {
             }
         });
     });
-});
+
