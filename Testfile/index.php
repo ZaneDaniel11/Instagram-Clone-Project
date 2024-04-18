@@ -1,43 +1,51 @@
 <?php
-
-require 'config.php';
+require 'config.php'; // Assuming dconfig.php contains your database connection
 
 ?>
 <html>
-<head> </head>
+<head></head>
 <body>
-<table border = 1 cellspacing=0 cellpadding= 10>
-    <tr>
-        <td>#</td>
-        <td>Name</td>
-        <td>Image</td>
-    </tr>
+    <table border="1" cellspacing="0" cellpadding="10">
+        <tr>
+            <td>#</td>
+            <td>Name</td>
+            <td>Image</td>
+        </tr>
 
-    <?php
-    $i = 1;
+        <?php
+        $i = 1;
 
+        $result = mysqli_query($conn, "SELECT * FROM tb_images"); // Corrected SQL query
 
-
-    
-    $rows = mysqli_query($conn, "SELECT FROM tb_images");
-    foreach($rows as $row) :
-    ?>
-    <tr>
-    <td> <?php echo $i++; ?> </td>
-    
-<?php echo $row["name"];?> <td>
-
-    <td style="display: flex; align-items: center; gap: 10px"> <?php
-foreach(json_decode($row["image"]) as $image) :
-?>
-<img src="uploads/<?php echo $image; ?>" width=200>
-<?php endforeach; ?>
-</td>
-</tr>
-<?php endforeach; ?>
-</table>
-<br>
-<a href="upload.php">Upload Image</a>
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $row["name"]; ?></td>
+                    <td style="display: flex; align-items: center; gap: 10px;">
+                        <?php
+                        $filesArray = json_decode($row["image"], true);
+                        if (is_array($filesArray)) {
+                            foreach ($filesArray as $image) {
+                                ?>
+                                <img src="uploads/<?php echo $image; ?>" width="200">
+                                <?php
+                            }
+                        } else {
+                            echo "No images";
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <?php
+            }
+        } else {
+            echo "<tr><td colspan='3'>No records found</td></tr>";
+        }
+        ?>
+    </table>
+    <br>
+    <a href="upload.php">Upload Image</a>
 </body>
 </html>
-I

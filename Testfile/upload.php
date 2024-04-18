@@ -1,50 +1,45 @@
-
 <?php
-require 'config.php';
-if(isset($_POST["submit"])){
-$name = $_POST['name'];
-$totalFiles = count($_FILES['fileImg']['name']); $filesArray = array();
-for($i = 0; $i < $totalFiles; $i++ )
-{
-    $imageName = $_FILES["fileImg"]["name"][$i];
-    $tmpName = $_FILES["fileImg"]["tmp_name"][$i];
+require 'config.php'; // Assuming config.php contains your database connection
 
+if(isset($_POST["submit"])) {
+    $name = $_POST['name'];
+    $filesArray = [];
 
-    $imageExtension = explode('.', $imageName);
-    $imageExtension = strtolower(end($imageExtension));
+    // Loop through each uploaded file
+    foreach ($_FILES['fileImg']['tmp_name'] as $key => $tmpName) {
+        $imageName = $_FILES["fileImg"]["name"][$key];
+        $imageExtension = pathinfo($imageName, PATHINFO_EXTENSION);
+        $newImageName = uniqid() . '.' . $imageExtension;
 
-    $newImageName = uniqid(). '.' . $imageExtension;
+        // Move the uploaded file to the uploads directory
+        move_uploaded_file($tmpName, 'uploads/' . $newImageName);
+        $filesArray[] = $newImageName; // Add the file name to the array
+    }
 
-    move_uploaded_file($tmpName, 'uploads/' . $newImageName);
-    $filesArray[] = $newImageName;
-}
+    $filesJson = json_encode($filesArray);
 
-$filesArray = json_encode($filesArray);
+    // Insert data into the database
+    $query = "INSERT INTO tb_images (name, image) VALUES ('$name', '$filesJson')";
 
-$query = "INSERT INTO tb images VALUES ('', '$name', '$filesArray')"; 
-mysqli_query($conn, $query);
-
-echo
-"
-<script>
-alert('Successfully Added');
-document.location.href = 'index.php'
-</script>
-";
-
+    if(mysqli_query($conn, $query)) {
+        echo "<script>alert('Successfully Added');</script>";
+    } else {
+        echo "<script>alert('Error inserting data');</script>";
+    }
 }
 ?>
+
 <html>
-<head> </head>
+<head></head>
 <body>
-<form enctype="multipart/form-data" action="" method="post">
-Name :
-<input type="text" name="name" required> <br>
-Image :
-<input type="file" name="fileImg[]" accept=".jpg, .jpeg, .png" required multiple> <br> 
-<button type="submit" name="submit">Submit</button>
-</form>
-<br>
-<a href="index.php">index</a>
+    <form enctype="multipart/form-data" action="" method="post">
+        Name:
+        <input type="text" name="name" required><br>
+        Images:
+        <input type="file" name="fileImg[]" accept=".jpg, .jpeg, .png" required multiple><br>
+        <button type="submit" name="submit">Submit</button>
+    </form>
+    <br>
+    <a href="index.php">Go back to index</a>
 </body>
 </html>
