@@ -8,7 +8,7 @@
 
     if($conn)
     {
-        echo'Connected Succesfully';
+        // echo'Connected Succesfully';
     }
 
 ?>

@@ -6,7 +6,7 @@ include('Include/navbar.php');
 
 <?php
 if (isset($_SESSION['status'])) {
-    ?><div class="alert"><?= $_SESSION['status'] ?></div>
+?><div class="alert"><?= $_SESSION['status'] ?></div>
 <?php
 }
 ?>
@@ -26,6 +26,13 @@ if (isset($_SESSION['status'])) {
               <div id="error_status"></div>
               <textarea class="comment_text form-control" id="comment_textbox" rows="3"></textarea>
               <button type="button" class="btn btn-primary add_comment_btn" id="add_comment_btn">Comment</button>
+
+              <hr>
+              
+              <div class="comment-container">
+             
+              </div>
+
             </div>
           </div>
         </div>

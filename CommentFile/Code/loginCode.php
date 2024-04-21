@@ -16,7 +16,7 @@ if (isset($_POST['login_btn'])) {
         $userdata = mysqli_fetch_array($login_query_run);
 
         $user_id = $userdata['user_id'];
-        $username= $userdata['fullName'];
+        $username = $userdata['fullName'];
 
         $_SESSION['auth_user_id'] = $user_id;
         $_SESSION['authuser_name'] = $username;
