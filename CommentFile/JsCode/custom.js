@@ -71,8 +71,8 @@ $(document).ready(function () {
           append('<div class="reply_box border p-2 mb-2">\
           <h6 class="border-bottom d-inline"> '+value.user['fullName']+' : '+value.cmt['commented_on']+' </h6>\
            <p class="para">'+value.cmt['msg']+'</p>\
-          <button class="btn btn-primary reply_btn">Reply</button>\
-         <button class="btn btn-success view_reply_btn">View reply</button>\
+          <button class="btn btn-primary reply_btn" value="'+value.cmt['id']+'">Reply</button>\
+         <button class="btn btn-success view_reply_btn" value="'+value.cmt['id']+'">View reply</button>\
           <div class="ml-4 reply_section"></div>\
          </div>\
           ');
@@ -82,43 +82,28 @@ $(document).ready(function () {
       }
     });
   }
-  // function Load_comment() {
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "./Code/add-Comment.php",
-  //     data: {
-  //       'comment_load_data': true
-  //     },
-  //     success: function (response) {
-  //       console.log("AJAX request successful. Response:", response);
-  
-       
-  //       if (response && response.length > 0) {
-  //         response.forEach(function (commentData) {
-  //           var user = commentData.user;
-  //           var comment = commentData.cmt;
-  
-  //           var commentHtml = '<div class="reply_box border p-2 mb-2">';
-  //           commentHtml += '<h6 class="username">' + user.username + '</h6>';
-  //           commentHtml += '<p class="para">' + comment.msg + '</p>';
-  //           commentHtml += '<button class="reply_btn">Reply</button>';
-  //           commentHtml += '<button class="view_reply_btn">View reply</button>';
-  //           commentHtml += '<div class="ml-4 reply_section"></div>';
-  //           commentHtml += '</div>';
-  
-  //           $('.comment-container').append(commentHtml);
-  //         });
-  //       } else {
-  //         console.log("No comments available.");
-  //       }
-  //     },
-  //     error: function (xhr, status, error) {
-  //       console.log("Error:", xhr.responseText);
-  //     }
-  //   });
-  // }
+ 
 
 
+$(document).on('click', '.reply_btn', function () {
+
+      var thisClicked = $(this);
+      var cmt_id = thisClicked
+      $('.reply_section').html("");
+      thisClicked.closest('.reply_box').find('.reply_section').
+      html('<input type="text" placeholder="reply">\
+      <div class="reply_btn_container">\
+        <button class="reply_add_btn">reply</button>\
+        <button class="reply_cancel_btn">cancel</button>\
+      </div>\
+      ');
+      
+});
+
+$(document).on('click','.reply_cancel_btn',function () {
+  $('.reply_section').html("");
+});
+  
   
     $(".add_comment_btn").click(function (e) {
       e.preventDefault();

@@ -28,9 +28,9 @@ if (isset($_SESSION['status'])) {
               <button type="button" class="btn btn-primary add_comment_btn" id="add_comment_btn">Comment</button>
 
               <hr>
-              
+
               <div class="comment-container">
-             
+
               </div>
 
             </div>
