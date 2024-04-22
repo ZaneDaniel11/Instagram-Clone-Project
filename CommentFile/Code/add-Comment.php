@@ -10,15 +10,15 @@ if (isset($_POST['comment_load_data'])) {
     $array_result = [];
 
     if (mysqli_num_rows($comments_query_run) > 0) {
-        foreach($comments_query_run as $row) {
+        foreach ($comments_query_run as $row) {
             $user = $row['user_id'];
 
             $user_query = "SELECT * FROM users_db WHERE user_id ='$user' LIMIT 1";
             $user_query_run = mysqli_query($conn, $user_query);
-    
+
             $user_result = mysqli_fetch_array($user_query_run);
 
-            array_push($array_result, ['cmt'=>$row, 'user'=>$user_result]);
+            array_push($array_result, ['cmt' => $row, 'user' => $user_result]);
         }
         header('Content-type: application/json');
         echo json_encode($array_result);
@@ -29,7 +29,7 @@ if (isset($_POST['comment_load_data'])) {
     $msg = mysqli_real_escape_string($conn, $_POST['msg']);
     $user_id = $_SESSION['auth_user_id'];
 
-    // Use prepared statement to prevent SQL injection
+
     $query = "INSERT INTO comment_tb (user_id, msg) VALUES (?, ?)";
     $stmt = mysqli_prepare($conn, $query);
 

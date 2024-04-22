@@ -64,18 +64,21 @@ $(document).ready(function () {
       },
      
       success: function (response) {
-        
+  
        $('.comment-container').html("");
+        $.each(response, function (key, value) { 
+          $('.comment-container').
+          append('<div class="reply_box border p-2 mb-2">\
+          <h6 class="border-bottom d-inline"> '+value.user['fullName']+' : '+value.cmt['commented_on']+' </h6>\
+           <p class="para">'+value.cmt['msg']+'</p>\
+          <button class="btn btn-primary reply_btn">Reply</button>\
+         <button class="btn btn-success view_reply_btn">View reply</button>\
+          <div class="ml-4 reply_section"></div>\
+         </div>\
+          ');
+        });
       console.log(response);
-       $('.comment-container').
-       append('<div class="reply_box border p-2 mb-2">\
-       <h6 class="border-bottom d-inline">testing</h6>\
-        <p class="para">testing</p>\
-       <button class="btn btn-primary reply_btn">Reply</button>\
-      <button class="btn btn-success view_reply_btn">View reply</button>\
-       <div class="ml-4 reply_section"></div>\
-      </div>\
-       ');
+  
       }
     });
   }
