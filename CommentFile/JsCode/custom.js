@@ -1,59 +1,7 @@
 $(document).ready(function () {
 
   load()
-//   function load() {
-//     $.ajax({
-//         type: "POST",
-//         url: "./Code/add-Comment.php",
-//         data: {
-//             'comment_load_data': true,
-          
-//         },
-//         success: function (response) {
-//             console.log("AJAX request successful. Response:", response);
 
-//             if (typeof response === 'string') {
-//                 response = response.trim(); // Trim the response if it's a string
-//             }
-
-//             // Check if response is not empty and is a valid JSON string
-//             if (response && isValidJsonString(response)) {
-//                 var responseData = JSON.parse(response);
-//                 // Handle the parsed JSON data as needed
-//                 console.log("Parsed JSON data:", responseData);
-
-//                 // Append new content based on response data
-//                 responseData.forEach(function(item) {
-//                     $('.comment-container').append('<div class="reply_box border p-2 mb-2">\
-//                         <h6 class="border-bottom d-inline">' + item.user.fullName + '</h6>\
-//                         <p class="para">' + item.cmt.msg + '</p>\
-//                         <button class="btn btn-primary reply_btn">Reply</button>\
-//                         <button class="btn btn-success view_reply_btn">View reply</button>\
-//                         <div class="ml-4 reply_section"></div>\
-//                     </div>');
-//                 });
-//             } else {
-//                 console.log("Invalid or empty response:");
-//             }
-//         },
-//         error: function (xhr, status, error) {
-//             console.log("Error:", xhr.responseText);
-//         }
-//     });
-// }
-
-// // Function to check if a string is a valid JSON
-// function isValidJsonString(str) {
-//     try {
-//         JSON.parse(str);
-//         return true;
-//     } catch (e) {
-//         return false;
-//     }
-// }
-
-  // Load_comment();
-  // load();
   function load()
   {
     $.ajax({
@@ -84,14 +32,13 @@ $(document).ready(function () {
   }
  
 
-
 $(document).on('click', '.reply_btn', function () {
 
       var thisClicked = $(this);
       var cmt_id = thisClicked
       $('.reply_section').html("");
       thisClicked.closest('.reply_box').find('.reply_section').
-      html('<input type="text" placeholder="reply">\
+      html('<input type="text" placeholder="reply" class="reply_input">\
       <div class="reply_btn_container">\
         <button class="reply_add_btn">reply</button>\
         <button class="reply_cancel_btn">cancel</button>\
@@ -100,12 +47,38 @@ $(document).on('click', '.reply_btn', function () {
       
 });
 
+
+
 $(document).on('click','.reply_cancel_btn',function () {
   $('.reply_section').html("");
 });
   
-  
-    $(".add_comment_btn").click(function (e) {
+$(document).on('click','.reply_add_btn',function (e) { 
+  e.preventDefault();
+
+  var thisClicked = $(this);
+  var cmt_id = thisClicked.closest('.reply_box').find('.reply_btn').val();
+  var reply = thisClicked.closest('.reply_box').find('.reply_input').val();
+
+  var data = {
+      'comment_id':cmt_id,
+      'reply':reply,
+      'add_reply':true
+  }
+  $.ajax({
+    type: "POST",
+    url: "./Code/add-Comment.php",
+    data: data,
+    success: function (response) {
+
+      alert(response);
+      $('.reply_section').html("");
+      
+    }
+  });
+});
+
+$(".add_comment_btn").click(function (e) {
       e.preventDefault();
   
       var msg = $("#comment_textbox").val();
