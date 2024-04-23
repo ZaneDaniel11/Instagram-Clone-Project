@@ -3,25 +3,46 @@
 session_start();
 include('connection.php');
 
-if(isset($_POST['add_reply']))
-{
-    $comment_id = mysqli_real_escape_string($conn,$_POST['comment_id']);
-    $reply = mysqli_real_escape_string($conn,$_POST['reply']);
+if (isset($_POST['reply_btn'])) {
+
+    $reply_id = mysqli_real_escape_string($conn, $_POST[['reply_id']]);
+
+    $view_reply_query = "SELECT *FROM comment_reply_tb WHERE comment_id = '$reply_id'";
+
+    $view_reply_connection = mysqli_query($conn, $view_reply_query);
+
+    $array_comment_result = [];
+
+    if (mysqli_num_rows($view_reply_connection) > 0) {
+        foreach ($view_reply_connection as $row) {
+            $user_id = $row['user_id'];
+            $view_reply_user = "SELECT *FROM users_db WHERE user_id = '$user_id'";
+
+            $view_user_reply = mysqli_query($conn, $view_reply_user);
+
+            $reply_result = mysqli_fetch_array($view_user_reply);
+
+            array_push($array_comment_result, ['rcmt' => $row, 'user' => $reply_result]);
+        }
+        header('Content-type: application/json');
+        echo json_encode($array_comment_result);
+    }
+}
+
+if (isset($_POST['add_reply'])) {
+    $comment_id = mysqli_real_escape_string($conn, $_POST['comment_id']);
+    $reply = mysqli_real_escape_string($conn, $_POST['reply']);
 
     $user_id = $_SESSION['auth_user_id'];
     $query = "INSERT INTO comment_reply_tb (user_id,comment_id,reply_msg) VALUES ('$user_id','$comment_id','$reply')";
 
-    $query_conn = mysqli_query($conn,$query);
+    $query_conn = mysqli_query($conn, $query);
 
-    if($query_conn)
-    {
+    if ($query_conn) {
         echo 'Comment Added';
+    } else {
+        echo 'Comment not added';
     }
-    else
-    {
-        echo'Comment not added';
-    }
-
 }
 
 
