@@ -31,7 +31,27 @@ $(document).ready(function () {
     });
   }
  
+$(document).on('click','.view_reply_btn',function (e) { 
+  e.preventDefault();
 
+  var clicked = $(this);
+  var reply_id = clicked.closest('.reply_box').find('.view_reply_btn').val();
+
+  data = {
+    'reply_id':reply_id,
+    'reply_btn':true
+  }
+  $.ajax({
+    type: "POST",
+    url: "./Code/add-Comment.php",
+    data: data,
+  
+    success: function (response) {
+      
+    }
+  });
+  
+});
 $(document).on('click', '.reply_btn', function () {
 
       var thisClicked = $(this);
