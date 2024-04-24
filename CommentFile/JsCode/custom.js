@@ -31,6 +31,12 @@ $(document).ready(function () {
       }
     });
   }
+
+  $(document).on('click','.view_content_comment', function (e) {
+    e.preventDefault();
+    
+    
+  });
 $(document).on('click','.delete_reply_btn', function (e) {
   e.preventDefault();
 
@@ -48,7 +54,7 @@ $(document).on('click','.delete_reply_btn', function (e) {
     data: data,
    
     success: function (response) {
-      
+      location.reload();
     }
   });
   
@@ -161,8 +167,8 @@ $(".add_comment_btn").click(function (e) {
           url: "./Code/add-Comment.php",
           data: data,
           success: function (response) {
-            alert(response);
-          
+            // alert(response);
+            location.reload();
             $(".comment_textbox").val("");
           },
           error: function () {
