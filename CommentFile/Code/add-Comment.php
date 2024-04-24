@@ -3,6 +3,43 @@
 session_start();
 include('connection.php');
 
+
+if(isset($_POST['view_comment'])){
+
+    $reply_id = mysqli_real_escape_string($conn,$_POST['reply_on_comment_id']);
+    $view_reply_query = "SELECT *FROM comment_reply_tb WHERE comment_id = '$reply_id'";
+
+    $view_reply_connection = mysqli_query($conn, $view_reply_query);
+
+    $array_comment_result = [];
+
+    if(mysqli_num_rows($view_reply_connection) > 0)
+    {
+        foreach($view_reply_connection as $row)
+        {
+            $user_id = $row['user_id'];
+            $view_reply_user = "SELECT *FROM users_db WHERE user_id = '$user_id' LIMIT 1";
+
+            $view_user_reply = mysqli_query($conn, $view_reply_user);
+
+            $reply_result = mysqli_fetch_array($view_user_reply);
+
+            array_push($array_comment_result, ['rcmt'=>$row, 'user'=>$reply_result]);
+        }
+        header('Content-Type: application/json');
+        echo json_encode($array_comment_result);
+      
+    }
+    else
+    {
+        echo 'Shesh';
+    }
+    
+}
+
+
+
+
 if (isset($_POST['reply_btn'])) {
 
     $reply_id = mysqli_real_escape_string($conn, $_POST[['reply_id']]);
@@ -22,7 +59,7 @@ if (isset($_POST['reply_btn'])) {
 
             $reply_result = mysqli_fetch_array($view_user_reply);
 
-            array_push($array_comment_result, ['rcmt' => $row, 'user' => $reply_result]);
+            array_push($array_comment_result, ['rcmt'=>$row, 'user'=> $reply_result]);
         }
         header('Content-type: application/json');
         echo json_encode($array_comment_result);
@@ -89,6 +126,4 @@ if (isset($_POST['comment_load_data'])) {
     } else {
         echo "Error in preparing the statement: " . mysqli_error($conn);
     }
-} else {
-    echo "Invalid request.";
-}
+} 

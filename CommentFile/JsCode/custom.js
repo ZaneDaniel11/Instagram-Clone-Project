@@ -35,15 +35,28 @@ $(document).on('click','.view_reply_btn',function (e) {
   e.preventDefault();
 
   var clicked = $(this);
+  var reply_id = clicked.val();
 
-  $('.reply_section').html("");
-  clicked.closest('.reply_box').find('.reply_section').append('<div class="sub_reply_box border p-2 mb-2">\
-  <h6 class="border-bottom d-inline"> test </h6>\
-   <p class="para">test</p>\
-  <button class="btn btn-primary sub_reply_btn" value="">Reply</button>\
-  <div class="ml-4 sub_reply_section"></div>\
- </div>\
-  ');
+  $.ajax({
+    type: "POST",
+    url: "./Code/add-Comment.php",
+    data:{ 'reply_on_comment_id': reply_id,
+            'view_comment':true
+  },
+
+    success: function (response) {
+      console.log(response);
+    //   $('.reply_section').html("");
+    //   clicked.closest('.reply_box').find('.reply_section').append('<div class="sub_reply_box border p-2 mb-2">\
+    //   <h6 class="border-bottom d-inline"> test </h6>\
+    //    <p class="para">test</p>\
+    //   <button class="btn btn-primary sub_reply_btn" value="">Reply</button>\
+    //   <div class="ml-4 sub_reply_section"></div>\
+    //  </div>\
+    //   ');
+    }
+  });
+
   // var reply_id = clicked.closest('.reply_box').find('.view_reply_btn').val();
 
   
