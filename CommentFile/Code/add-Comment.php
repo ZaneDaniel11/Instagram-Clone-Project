@@ -3,6 +3,15 @@
 session_start();
 include('connection.php');
 
+if(isset($_POST['delete_comment_btn']))
+{
+    $delete_comment = mysqli_real_escape_string($conn,$_POST['delete_comment']);
+
+    $delete_comment_sql = "DELETE FROM comment_tb WHERE id = '$delete_comment' ";
+
+    $delete_c_connectiommenton = mysqli_query($conn,$delete_comment_sql);
+
+}
 
 if(isset($_POST['view_comment'])){
 

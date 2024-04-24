@@ -21,6 +21,7 @@ $(document).ready(function () {
            <p class="para">'+value.cmt['msg']+'</p>\
           <button class="btn btn-primary reply_btn" value="'+value.cmt['id']+'">Reply</button>\
          <button class="btn btn-success view_reply_btn" value="'+value.cmt['id']+'">View reply</button>\
+         <button class="btn btn-success delete_reply_btn" value="'+value.cmt['id']+'">Delete</button>\
           <div class="ml-4 reply_section"></div>\
          </div>\
           ');
@@ -30,7 +31,29 @@ $(document).ready(function () {
       }
     });
   }
- 
+$(document).on('click','.delete_reply_btn', function (e) {
+  e.preventDefault();
+
+  var click = $(this);
+
+  var delete_comment = click.val();
+
+  var data = {
+    'delete_comment':delete_comment,
+    'delete_comment_btn':true
+  }
+  $.ajax({
+    type: "POST",
+    url: "./Code/add-Comment.php",
+    data: data,
+   
+    success: function (response) {
+      
+    }
+  });
+  
+});
+
 $(document).on('click','.view_reply_btn',function (e) { 
   e.preventDefault();
 
