@@ -32,11 +32,13 @@ $(document).ready(function () {
     });
   }
 
-  $(document).on('click','.view_content_comment', function (e) {
-    e.preventDefault();
+
+  // $(document).on('click','.view_content_comment', function (e) {
+  //   e.preventDefault();
     
     
-  });
+  // });
+  // Delete Reply Btn
 $(document).on('click','.delete_reply_btn', function (e) {
   e.preventDefault();
 
@@ -99,6 +101,7 @@ $(document).on('click','.view_reply_btn',function (e) {
 
   
 });
+
 $(document).on('click', '.reply_btn', function () {
 
       var thisClicked = $(this);

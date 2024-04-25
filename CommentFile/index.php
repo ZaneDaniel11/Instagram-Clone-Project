@@ -53,13 +53,18 @@ if (isset($_SESSION['status'])) {
     height: 200px;
   }
 </style>
+
+
+<!-- Modal Create Post -->
+
+
 <div class="py-4">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h4>Zane Daniel</h4> <p>20/20/24</p>
+            <h4>Zane Daniel</h4> <p>20/20/24</p> <label type="button" class="delete_content">delete</label>
           </div>
           <div class="card-body">
 

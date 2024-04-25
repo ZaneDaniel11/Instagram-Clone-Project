@@ -28,6 +28,37 @@
   </div>
 </div>
 
+
+<div class="modal fade" id="Create-Content" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Username</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form>
+        <div class="modal-body">
+              <div class="mb-3">
+                <label for="text" class="form-label ">Content Name</label>
+                <input type="text" class="form-control add_content_input" id="content" >
+              </div>
+              <div class="mb-3">
+              <div class="input-group">
+                  <input type="file" class="form-control fileImg" accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon04" aria-label="Upload"  required multiple>
+                 
+                </div>
+              </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary submit_content">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
     <a class="navbar-brand" href="#"><?php if (isset($_SESSION['authuser_name'])) {
@@ -54,7 +85,7 @@
         ?>
          
         </li>
-        <li class="nav-item dropdown">
+        <li><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Create-Content">Create Post</button></li>
       </ul>
 
     </div>

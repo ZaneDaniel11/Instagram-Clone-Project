@@ -3,6 +3,7 @@ require 'config.php'; // Assuming config.php contains your database connection
 
 if (isset($_POST["submit"])) {
     $name = $_POST['name'];
+    
     $filesArray = [];
 
     foreach ($_FILES['fileImg']['tmp_name'] as $key => $tmpName) {
@@ -37,7 +38,7 @@ if (isset($_POST["submit"])) {
         Name:
         <input type="text" name="name" required><br>
         Images:
-        <input type="file" name="fileImg[]" accept=".jpg, .jpeg, .png" required multiple><br>
+        <input type="file" name="fileImg " accept=".jpg, .jpeg, .png" required multiple><br>
         <button type="submit" name="submit">Submit</button>
     </form>
     <br>
