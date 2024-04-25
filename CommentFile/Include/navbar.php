@@ -36,23 +36,23 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Username</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form>
-        <div class="modal-body">
-              <div class="mb-3">
-                <label for="text" class="form-label ">Content Name</label>
-                <input type="text" class="form-control add_content_input" id="content" >
-              </div>
-              <div class="mb-3">
+      <form method="POST" action="./Code/Content.php" enctype="multipart/form-data">
+      <div class="modal-body">
+          <div class="mb-3">
+              <label for="text" class="form-label">Content Name</label>
+              <input type="text" class="form-control" name="content" id="content">
+          </div>
+          <div class="mb-3">
               <div class="input-group">
-                  <input type="file" class="form-control fileImg" accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon04" aria-label="Upload"  required multiple>
-                 
-                </div>
+                  <input type="file" class="form-control fileImg" name="fileImg[]" accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required multiple>
               </div>
+          </div>
+          <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+      </div>
+</form>
 
-        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary submit_content">Save changes</button>
         </div>
       </form>
     </div>

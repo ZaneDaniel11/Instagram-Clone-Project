@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
         Name:
         <input type="text" name="name" required><br>
         Images:
-        <input type="file" name="fileImg " accept=".jpg, .jpeg, .png" required multiple><br>
+        <input type="file" name="fileImg[]" accept=".jpg, .jpeg, .png" required multiple><br>
         <button type="submit" name="submit">Submit</button>
     </form>
     <br>
