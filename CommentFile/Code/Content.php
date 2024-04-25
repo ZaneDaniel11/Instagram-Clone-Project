@@ -2,6 +2,7 @@
 session_start();
 include('connection.php');
 
+
 if (isset($_POST["submit"])) {
     $name = mysqli_real_escape_string($conn, $_POST['content']);
     $user_id = $_SESSION['auth_user_id'];
@@ -28,5 +29,4 @@ if (isset($_POST["submit"])) {
     }
 }
 
-mysqli_close($conn);
 ?>

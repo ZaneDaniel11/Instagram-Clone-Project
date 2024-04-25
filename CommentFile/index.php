@@ -56,7 +56,9 @@ if (isset($_SESSION['status'])) {
 
 
 <!-- Modal Create Post -->
-
+<div class="Content-Container">
+  
+</div>
 
 <div class="py-4">
   <div class="container">

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  load()
+  load();
 
   function load()
   {
@@ -33,12 +33,7 @@ $(document).ready(function () {
   }
 
 
-  // $(document).on('click','.view_content_comment', function (e) {
-  //   e.preventDefault();
-    
-    
-  // });
-  // Delete Reply Btn
+
 $(document).on('click','.delete_reply_btn', function (e) {
   e.preventDefault();
 
