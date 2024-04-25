@@ -74,10 +74,12 @@ $(document).on('click','.view_reply_btn',function (e) {
   },
 
     success: function (response) {
+      $('.reply_section').html("");
+       console.table(response);
       $.each(response, function (key, value) { 
-          console.table(response);
-      // $('.reply_section').html("");
-      $('.reply_section').append('<div class="sub_reply_box border p-2 mb-2">\
+         
+          clicked.closest('.reply_box').find
+      ('.reply_section').append('<div class="sub_reply_box border p-2 mb-2">\
       <h6 class="border-bottom d-inline">'+value.user['fullName']+'</h6>\
        <p class="para">'+value.rcmt['reply_msg']+'</p>\
       <button class="btn btn-primary sub_reply_btn" value="">Reply</button>\
@@ -86,11 +88,13 @@ $(document).on('click','.view_reply_btn',function (e) {
       ')
       });
       // console.log(response);
-    
     }
-
   });
-
+  $(document).on('click','.view_reply_btn', function (e) {
+    e.preventDefault();
+    $('.reply_section').html("");
+ });
+ 
   // var reply_id = clicked.closest('.reply_box').find('.view_reply_btn').val();
 
   
