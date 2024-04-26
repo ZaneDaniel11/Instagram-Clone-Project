@@ -1,9 +1,9 @@
 <?php
-require 'config.php'; // Assuming config.php contains your database connection
+require 'config.php';
 
 if (isset($_POST["submit"])) {
     $name = $_POST['name'];
-    
+
     $filesArray = [];
 
     foreach ($_FILES['fileImg']['tmp_name'] as $key => $tmpName) {

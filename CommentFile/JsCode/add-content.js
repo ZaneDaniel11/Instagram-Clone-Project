@@ -1,3 +1,5 @@
+var res ; 
+
 $(document).ready(function () {
     Load_Content();
 
@@ -13,24 +15,26 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (response) {
                 console.log(response);
-                if (Array.isArray(response)) { // Check if response is an array
+                res = response; 
+                if (Array.isArray(response)) { 
                     response.forEach(function (value) {
                         console.log(value.content.image); // Debugging output
 
                         let imagesHTML = '';
-                        if (Array.isArray(value.content.image)) { // Check if image data is an array
-                            value.content.image.forEach(function (image) {
-                                imagesHTML += '<img src="./uploads/' + image + '" alt="image">';
+                            var images = JSON.parse(value.content.image);
+
+                        if (images.length>1 ) { // Check if image data is an array
+                            images.forEach(function (image) {
+                                imagesHTML += '<img src="Code/uploads/' + image + '" alt="image1                                                        ">';
                             });
                         } else {
-                            
-                            imagesHTML += '<img src="./uploads/' + value.content.image + '" alt="image">';
+                            imagesHTML += '<img src="Code/uploads/'+ images + '" alt="image">';
                         }
 
                         let contentHTML = '<div class="col-md-8">\
                             <div class="card">\
                                 <div class="card-header d-flex justify-content-between">\
-                                    <h4>' + value.user.fullName + '</h4> ' + value.content.created + '<label type="button" class="delete_content">delete</label>\
+                                    <h4>' + value.user.fullName + '</h4> ' + value.content.created + '<label type="button" value='+value.content.content_id+' class="delete_content_btn">delete</label>\
                                 </div>\
                                 <div class="card-body">\
                                     <div class="post-Container d-flex align-content-stretch flex-nowrap">\
@@ -54,5 +58,25 @@ $(document).ready(function () {
     }
 
 
-    
+    $(document).on('click','.delete_content_btn',function (e) {
+        e.preventDefault();
+
+        var clicked = $(this);
+
+        var delete_content  = clicked.val();
+
+        var data = {
+            'content': delete_content,
+            'submit_delete':true
+        }
+        $.ajax({
+            type: "POST",
+            url: "./Code/Content.php",
+            data: data,
+            success: function (response) {
+                console.log(response)
+            }
+        });
+        
+    });
 });
