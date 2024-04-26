@@ -23,7 +23,7 @@ $(document).ready(function () {
                                 imagesHTML += '<img src="./uploads/' + image + '" alt="image">';
                             });
                         } else {
-                            // Handle case where image data is not an array
+                            
                             imagesHTML += '<img src="./uploads/' + value.content.image + '" alt="image">';
                         }
 
@@ -52,4 +52,7 @@ $(document).ready(function () {
             }
         });
     }
+
+
+    
 });
