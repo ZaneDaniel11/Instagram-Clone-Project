@@ -56,54 +56,15 @@ if (isset($_SESSION['status'])) {
 
 
 <!-- Modal Create Post -->
-<div class="Content-Container">
-  
-</div>
-<!-- 
+ 
 <div class="py-4">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header d-flex justify-content-between">
-            <h4>Zane Daniel</h4> <p>20/20/24</p> <label type="button" class="delete_content">delete</label>
-          </div>
-          <div class="card-body">
-
-            <div class="post-Container d-flex align-content-stretch flex-nowrap">
-              <div class="image-Container">
-                  <img src="./uploads/Picturetest.jpg" alt="">
-              </div>
-            </div>
-
-            <div class="main-comment" style="margin-top: 20px;">
-              <div id="error_status">
-
-              </div>
-
-              <p>Add Comment</p>
-              <input class="comment_text form-control" id="comment_textbox"></input>
-
-              <!-- Button Container -->
-              <!-- <div class="button-Container d-flex justify-content-between" style="margin-top:20px">
-              <button type="button" class="btn btn-primary add_comment_btn" id="add_comment_btn">Comment</button>
-              <button class="btn btn-primary view_content_comment">View Comments</button>
-              </div>
-               -->
-
-              <!-- <hr>
-
-              <div class="comment-container">
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="row justify-content-center content_Container">
+      
+      
     </div>
   </div>
-</div> --> -->
+</div> 
 
 <?php
 include('Include/footer.php');
