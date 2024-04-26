@@ -59,7 +59,7 @@ if (isset($_SESSION['status'])) {
 <div class="Content-Container">
   
 </div>
-
+<!-- 
 <div class="py-4">
   <div class="container">
     <div class="row justify-content-center">
@@ -85,13 +85,13 @@ if (isset($_SESSION['status'])) {
               <input class="comment_text form-control" id="comment_textbox"></input>
 
               <!-- Button Container -->
-              <div class="button-Container d-flex justify-content-between" style="margin-top:20px">
+              <!-- <div class="button-Container d-flex justify-content-between" style="margin-top:20px">
               <button type="button" class="btn btn-primary add_comment_btn" id="add_comment_btn">Comment</button>
               <button class="btn btn-primary view_content_comment">View Comments</button>
               </div>
-              
+               -->
 
-              <hr>
+              <!-- <hr>
 
               <div class="comment-container">
 
@@ -103,7 +103,7 @@ if (isset($_SESSION['status'])) {
       </div>
     </div>
   </div>
-</div>
+</div> --> -->
 
 <?php
 include('Include/footer.php');
