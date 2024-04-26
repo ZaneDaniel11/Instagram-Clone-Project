@@ -1,4 +1,4 @@
-var res ; 
+
 
 $(document).ready(function () {
     Load_Content();
@@ -18,14 +18,14 @@ $(document).ready(function () {
                 res = response; 
                 if (Array.isArray(response)) { 
                     response.forEach(function (value) {
-                        console.log(value.content.image); // Debugging output
+                        console.log(value.content.image);
 
                         let imagesHTML = '';
                             var images = JSON.parse(value.content.image);
 
-                        if (images.length>1 ) { // Check if image data is an array
+                        if (images.length>1 ) { 
                             images.forEach(function (image) {
-                                imagesHTML += '<img src="Code/uploads/' + image + '" alt="image1                                                        ">';
+                                imagesHTML += '<div class="image-Container d-flex align-content-stretch flex-nowrap"><img src="Code/uploads/' + image + '" alt="image1"></div>';
                             });
                         } else {
                             imagesHTML += '<img src="Code/uploads/'+ images + '" alt="image">';
@@ -34,13 +34,24 @@ $(document).ready(function () {
                         let contentHTML = '<div class="col-md-8">\
                             <div class="card">\
                                 <div class="card-header d-flex justify-content-between">\
-                                    <h4>' + value.user.fullName + '</h4> ' + value.content.created + '<label type="button" value='+value.content.content_id+' class="delete_content_btn">delete</label>\
+                                    <h4>' + value.user.fullName + '</h4> <p>' + value.content.created + '</p> <button type="submit" value='+value.content.content_id+' class="delete_content_btn">delete</button>\
                                 </div>\
                                 <div class="card-body">\
                                     <div class="post-Container d-flex align-content-stretch flex-nowrap">\
-                                        <div class="image-Container">' + imagesHTML + '</div>\
+                                        ' + imagesHTML + '\
                                     </div>\
-                                    <!-- Other content elements here -->\
+                                    <div class="main-comment" style="margin-top: 20px;">\
+                                    <div id="error_status"></div>\
+                                    <p>Add Comment</p>\
+                                    <input class="comment_text form-control" id="comment_textbox"></input>\
+                                    <div class="button-Container d-flex justify-content-between" style="margin-top:20px">\
+                                        <button type="button" class="btn btn-primary add_comment_btn" id="add_comment_btn">Comment</button>\
+                                        <button class="btn btn-primary view_content_comment">View Comments</button>\
+                                    </div>\
+                                    <hr>\
+                                    <div class="comment-container">\
+                                    </div>\
+                                </div>\
                                 </div>\
                             </div>\
                         </div>';
@@ -56,7 +67,6 @@ $(document).ready(function () {
             }
         });
     }
-
 
     $(document).on('click','.delete_content_btn',function (e) {
         e.preventDefault();
@@ -74,7 +84,7 @@ $(document).ready(function () {
             url: "./Code/Content.php",
             data: data,
             success: function (response) {
-                console.log(response)
+                location.reload();
             }
         });
         

@@ -48,14 +48,16 @@ if (isset($_POST["submit"])) {
     }
 }
 
-// if (isset($_POST['submit_delete'])) {
+if (isset($_POST['submit_delete'])) {
 
-//     $delete_content = mysqli_real_escape_string($conn, $_POST['content']);
+    $delete_content = mysqli_real_escape_string($conn, $_POST['content']);
 
-//     $delete_sql = "DELETE FROM content_tb WHERE content_id = '$delete_content' ";
+    $delete_sql = "DELETE FROM content_tb WHERE content_id = '$delete_content' ";
 
-//     $delete_connection = mysqli_query($conn, $delete_sql);
+    $delete_connection = mysqli_query($conn, $delete_sql);
 
-//     if ($delete_connection) {
-//     }
-// }
+    if ($delete_connection) {
+    }
+}
+
+?>

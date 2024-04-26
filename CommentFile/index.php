@@ -42,6 +42,8 @@ if (isset($_SESSION['status'])) {
 </div> -->
 
 <style>
+
+
   .image-Container img
    {
       width: 100%;

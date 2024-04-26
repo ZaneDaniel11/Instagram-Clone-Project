@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+  
   load();
 
   function load()
@@ -145,6 +146,7 @@ $(document).on('click','.reply_add_btn',function (e) {
 
 $(".add_comment_btn").click(function (e) {
       e.preventDefault();
+
   
       var msg = $("#comment_textbox").val();
       var isError = false;
