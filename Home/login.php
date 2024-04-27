@@ -1,5 +1,9 @@
 <?php
 
+
+// $title = "Login . Instagram";
+// $keywords = "Instagram,share and capture world's moments,share,capture,share,login,signup";
+
 require "shared/header.php"
 
 ?>
@@ -61,7 +65,7 @@ require "shared/header.php"
 
     </main>
 </section>
-<script src="../public/js/common.js"></script>
+<script src="public/js/common.js"></script>
 </body>
 
 </html>
