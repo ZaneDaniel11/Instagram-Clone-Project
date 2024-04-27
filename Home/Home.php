@@ -164,7 +164,7 @@
 <body>
   <aside class="sidebar">
     <div class="SiteLogoContainer">
-      <img src="public/logo/instagram.png" alt="Instagram Logo" class="imgcontainer">
+      <img src="../style/images/instagramLogoLetter.png" alt="Instagram Logo" class="imgcontainer">
     </div>
     <nav class="navigation">
       <div class="icon-bar">
@@ -176,6 +176,7 @@
         <a href="#" class="nav-link"><i class="fas fa-bell"></i> Notifications</a>
         <a href="#" class="nav-link"><i class="fas fa-plus-square"></i> Create</a>
         <a href="#" class="nav-link"><i class="fas fa-user"></i> Profile</a>
+        <a href="">Logout</a>
       </div>
 
       </div>
