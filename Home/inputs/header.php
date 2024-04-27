@@ -28,7 +28,11 @@
                 <a href="#" class="nav-link"><i class="fas fa-paper-plane"></i> Messages</a>
                 <a href="#" class="nav-link"><i class="fas fa-bell"></i> Notifications</a>
                 <a href="#" class="nav-link"><i class="fas fa-plus-square"></i> Create</a>
-                <a href="#" class="nav-link"><i class="fas fa-user"></i> Profile</a>
+                <a href="#" class="nav-link"><i class="fas fa-user"></i> <?php if (isset($_SESSION['authuser_name'])) {
+                                                                                echo $_SESSION['authuser_name'];
+                                                                            } else {
+                                                                                echo 'fail';
+                                                                            } ?></a>
                 <a href="">Logout</a>
             </div>
 

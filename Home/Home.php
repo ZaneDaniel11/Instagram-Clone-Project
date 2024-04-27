@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('./inputs/header.php');
 ?>
 

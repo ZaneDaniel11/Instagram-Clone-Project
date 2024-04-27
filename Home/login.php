@@ -13,16 +13,16 @@ require "shared/header.php"
             <div class="heroimg"></div>
         </div>
         <article class="col-2">
-            <form action="" class="form">
+            <form action="../Code/login.php" class="form" method="POST">
                 <div class="SiteLogoContainer">
                     <img src="public/logo/instagram.png" alt="Instagram Logo" class="imgcontainer">
                 </div>
-                <input type="text" placeholder="Email or Username" class="form-input" name="email_username" autocomplete="off">
+                <input type="text" placeholder="Email or Username" class="form-input" name="username" autocomplete="off">
                 <div class="passwordContainer">
                     <input type="password" placeholder="Password" class="form-input" name="password" id="password" autocomplete="off">
                     <span class="show-hide-text cursor-pointer" id="show_hide_password">Show</span>
                 </div>
-                <button class="button cursor-pointer" type="submit" name="submitbutton">Log in</button>
+                <button class="button cursor-pointer" type="submit" name="login_btn">Log in</button>
                 <span class="separator">Or</span>
                 <a href="#" class="password-reset">Forget Password</a>
             </form>

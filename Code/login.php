@@ -1,23 +1,33 @@
 <?php
-include('connection.php');
 session_start();
+include('connection.php');
 
-$username = mysqli_real_escape_string($conn, $_POST['username']);
-$password = mysqli_real_escape_string($conn, $_POST['password']);
+if (isset($_POST['login_btn'])) {
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $login_query = "SELECT * FROM users_db WHERE username='$username' AND password = '$password' LIMIT 1";
 
-    $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($conn, $query);
+    $login_query_run = mysqli_query($conn, $login_query);
 
-    if ($result && mysqli_num_rows($result) > 0) {
 
-        $_SESSION['user'] = $username;
-        echo 'success';
+
+    if (mysqli_num_rows($login_query_run) > 0) {
+        $userdata = mysqli_fetch_array($login_query_run);
+
+        $user_id = $userdata['user_id'];
+        $username = $userdata['name'];
+
+        $_SESSION['auth_user_id'] = $user_id;
+        $_SESSION['authuser_name'] = $username;
+
+        $_SESSION['status'] = "Login Successfully";
+        header('Location: ../Home/Home.php');
+        exit();
     } else {
-        echo 'error';
-    }
-} else {
 
-    echo 'Invalid access';
+        $_SESSION['status'] = "Invalid Email Or Password";
+        header('Location:../Home/login.php');
+        exit();
+    }
 }
