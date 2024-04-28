@@ -36,7 +36,7 @@
         <h1 class="modal-title fs-5" id="exampleModalLabel">Username</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" action="./Code/Content.php" enctype="multipart/form-data">
+      <form method="POST" action="../Code/Content.php" enctype="multipart/form-data">
       <div class="modal-body">
           <div class="mb-3">
               <label for="text" class="form-label">Content Name</label>

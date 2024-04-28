@@ -13,7 +13,7 @@ require "shared/header.php"
             <div class="heroimg"></div>
         </div>
         <article class="col-2">
-            <form action="../Code/login.php" class="form" method="POST">
+            <form action="./Code/login.php" class="form" method="POST">
                 <div class="SiteLogoContainer">
                     <img src="public/logo/instagram.png" alt="Instagram Logo" class="imgcontainer">
                 </div>

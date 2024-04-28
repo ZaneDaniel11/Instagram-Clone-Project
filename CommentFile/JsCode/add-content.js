@@ -10,11 +10,13 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "./Code/Content.php",
+            url: "../Code/Content.php",
             data: data,
             dataType: 'json',
             success: function (response) {
+
                 console.log(response);
+                location.reload();
                 res = response; 
                 if (Array.isArray(response)) { 
                     response.forEach(function (value) {
@@ -23,12 +25,12 @@ $(document).ready(function () {
                         let imagesHTML = '';
                             var images = JSON.parse(value.content.image);
 
-                        if (images.length>1 ) { 
+                        if (images.length>0 ) { 
                             images.forEach(function (image) {
-                                imagesHTML += '<div class="image-Container d-flex align-content-stretch flex-nowrap"><img src="Code/uploads/' + image + '" alt="image1"></div>';
+                                imagesHTML = '<div class="image-Container d-flex align-content-stretch flex-nowrap"><img src="Code/uploads/' + image + '" alt="image1"></div>';
                             });
                         } else {
-                            imagesHTML += '<img src="Code/uploads/'+ images + '" alt="image">';
+                            imagesHTML = '<img src="Code/uploads/'+ images + '" alt="image">';
                         }
 
                         let contentHTML = '<div class="col-md-8">\
@@ -58,9 +60,7 @@ $(document).ready(function () {
 
                         $('.content_Container').append(contentHTML);
                     });
-                } else {
-                    console.log('Invalid response format.');
-                }
+                } 
             },
             error: function (xhr, status, error) {
                 console.error('AJAX Error:', status, error);
@@ -68,25 +68,5 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on('click','.delete_content_btn',function (e) {
-        e.preventDefault();
-
-        var clicked = $(this);
-
-        var delete_content  = clicked.val();
-
-        var data = {
-            'content': delete_content,
-            'submit_delete':true
-        }
-        $.ajax({
-            type: "POST",
-            url: "./Code/Content.php",
-            data: data,
-            success: function (response) {
-                location.reload();
-            }
-        });
-        
-    });
+    
 });
