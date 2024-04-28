@@ -6,7 +6,7 @@ $(document).ready(function () {
         let data = {
             'Load_Content': true
         };
-    
+
         $.ajax({
             type: "POST",
             url: "./Code/content.php",
@@ -14,30 +14,29 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 $('.content-container').empty(); // Clear existing content
-    
-                if (Array.isArray(response)) { 
+
+                if (Array.isArray(response)) {
                     response.forEach(function (value) {
                         console.log(value.content.image);
-    
+
                         let imagesHTML = '';
                         var images = JSON.parse(value.content.image);
-    
-                        if (images.length > 1) { 
+
+                        if (images.length > 1) {
                             images.forEach(function (image) {
                                 imagesHTML += '<div class="image-Container d-flex align-content-stretch flex-nowrap"><img src="Code/uploads/' + image + '" alt="image1"></div>';
                             });
                         } else {
                             imagesHTML += '<img src="Code/uploads/' + images + '" alt="image">';
                         }
-    
+
                         let contentHTML = '\
                             <div class="post-header d-flex justify-content-between">\
-                                <input type="text" class="content_content" value=" '+ value.content.content + '">\
                                 <div><img src="../car-5186291.jpg" alt="Profile Picture" class="profile-pic">\
                                     <span class="username">' + value.user.name + '</span>\
                                 </div>\
                                 <div>\
-                                    <button class="edit_content_btn" value="' + value.content.content_id + '">edit</button>\
+                                    <button class="edit_content_btn" data-content=\'' + JSON.stringify(value.content) + '\' value="' + value.content.content_id + '">edit</button>\
                                 </div>\
                                 <div>\
                                     <button class="delete_content_btn" value="' + value.content.content_id + '">X</button>\
@@ -53,7 +52,7 @@ $(document).ready(function () {
                             </div>\
                             <div class="post-caption">\
                                 <span class="username">' + value.user.name + '</span>\
-                                <p >'+value.content.content+'</p>\
+                                <p class="content_edit">' + value.content.content + '</p>\
                             </div>\
                             <div class="post-comments">\
                             </div>\
@@ -65,7 +64,7 @@ $(document).ready(function () {
                                 <button class="post-btn">Post</button>\
                             </div>\
                         ';
-    
+
                         $('.content-container').append(contentHTML);
                     });
                 } else {
@@ -77,17 +76,67 @@ $(document).ready(function () {
             }
         });
     }
+
+    // Handle edit button click to open modal
+    $(document).on('click', '.edit_content_btn', function (e) {
+        e.preventDefault();
+
+        var clicked = $(this);
+        var contentId = clicked.val();
+        var contentData = JSON.parse(clicked.attr('data-content'));
+
+        openEditModal(contentId, contentData.content, contentData.image_url);
+    });
+
+    function openEditModal(contentId, content, imageUrl) {
+        $('#editContentId').val(contentId);
+        $('#editContent').val(content);
+        $('#editImage').val(imageUrl);
+
+        $('#editModal').modal('show'); // Show the modal using Bootstrap modal function
+    }
+
+    $(document).on('click', '#close_modal', function (e) {
+        e.preventDefault();
+        $('#editModal').modal('hide');
+    });
+
+
+    // Submit edit form
+    $('#editForm').submit(function (e) {
+        e.preventDefault(); // Prevent the default form submission behavior
+    
+        var form = $(this);
+        var formData = new FormData(form[0]); // Use FormData for file uploads
+    
+        $.ajax({
+            type: "POST",
+            url: "./Code/edit_content.php",
+            data: formData,
+            processData: false, // Prevent jQuery from processing the data
+            contentType: false, // Set content type to false for file uploads
+            success: function (response) {
+                console.log('Content updated successfully:', response);
+                $('#editModal').modal('hide'); // Hide the modal after successful update
+                // Reload or update content display as needed
+            },
+            error: function (xhr, status, error) {
+                console.error('Error updating content:', status, error);
+            }
+        });
+    });
     
 
+    // Handle delete content button click
     $(document).on('click', '.delete_content_btn', function (e) {
         e.preventDefault();
 
         var clicked = $(this);
-        var delete_content  = clicked.val();
+        var delete_content = clicked.val();
 
         var data = {
             'content': delete_content,
-            'submit_delete':true
+            'submit_delete': true
         };
 
         $.ajax({
