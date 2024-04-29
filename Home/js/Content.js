@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    // Load content on page load
     Content();
 
     function Content() {
@@ -58,10 +57,13 @@ $(document).ready(function () {
                             </div>\
                             <div class="post-timestamp">\
                                 ' + value.content.created + '\
+                                <button class="post-btn view_comment_btn" value="'+value.content.content_id+'" >view Comment</button>\
                             </div>\
                             <div class="add-comment">\
                                 <input type="text" placeholder="Add a comment..." class="comment-input">\
                                 <button class="post-btn comment_btn" value="'+value.content.content_id+'">Post</button>\
+                            </div>\
+                            <div class="comment-container">\
                             </div>\
                         ';
 

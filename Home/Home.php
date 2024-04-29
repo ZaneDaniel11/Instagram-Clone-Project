@@ -38,21 +38,17 @@ include('./inputs/header.php');
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editForm"  enctype="multipart/form-data" >
-                    <input type="hidden" id="editContentId" name="content_id">
-                    <div class="form-group">
-                        <label for="editContent">Content:</label>
-                        <textarea class="form-control" id="editContent" name="content" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="editImage">Upload Image:</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control fileImg" name="fileImg[]" accept=".jpg, .jpeg, .png" aria-describedby="inputGroupFileAddon04" aria-label="Upload" required multiple>
-                        </div>
-                    </div>
-                    <!-- Add more input fields as needed -->
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </form>
+            <form id="editForm" method="POST" action="./Code/content.php"> <!-- Add method and action attributes -->
+            <input type="hidden" id="editContentId" name="content_id">
+            <div class="form-group">
+                <label for="editContent">Content:</label>
+                <textarea class="form-control" id="editContent" name="content" rows="3" required></textarea>
+            </div>
+            <button type="submit" name="update_content" class="btn btn-primary">Update</button>
+
+
+        </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="close_modal" data-dismiss="modal">Close</button>
