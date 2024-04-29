@@ -48,8 +48,23 @@ if(isset($_POST['show_comment_btn']))
         echo json_encode($array_comment_result);
     }
 }
-else
+
+if(isset($_POST['delete_comment']))
 {
-    echo 'wtf';
+    $delete_comment = mysqli_real_escape_string($conn,$_POST['delete_comment_id']);
+
+    $delete_comment_sql = "DELETE FROM comment_tb WHERE comment_id = '$delete_comment' ";
+
+    $delete_connection = mysqli_query($conn,$delete_comment_sql);
+
+    if($delete_connection)
+    {
+        echo 'Shesh';
+    }
+    else
+    {
+        echo 'Nigga';
+    }
+
 }
 ?>

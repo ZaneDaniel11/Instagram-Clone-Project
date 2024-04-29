@@ -21,6 +21,7 @@ $(document).ready(function () {
             data: data,
             success: function (response) {
                 console.log(response);
+                location.reload();
             }
         });
         
@@ -63,7 +64,31 @@ $(document).ready(function () {
 
     $(document).on('click','.view_comment_btn', function (e) {
         e.preventDefault();
-        $('.comment-container').html("");
+        $('.comment-container').html("")
+     });
+
+    
+     $(document).on('click','.delete_comment_btn', function (e) {
+        e.preventDefault();
+
+        var click = $(this);
+        var delete_comment = click.val();
+        
+        var data = {
+            'delete_comment_id':delete_comment,
+            'delete_comment':true
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "./Code/comment.php",
+            data: data,
+            success: function (response) {
+                location.reload();
+                
+            }
+        });
+        
      });
      
 });
