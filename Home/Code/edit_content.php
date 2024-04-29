@@ -5,6 +5,8 @@ include('connection.php');
 
 // Assuming your database connection and session start are already included
 
+var_dump($_POST); // Debugging output
+
 if (isset($_POST["submit"])) {
     $contentId = mysqli_real_escape_string($conn, $_POST['content_id']);
     $name = mysqli_real_escape_string($conn, $_POST['content']);
@@ -39,5 +41,4 @@ if (isset($_POST["submit"])) {
 } else {
     echo "Submit button not detected.";
 }
-
 ?>

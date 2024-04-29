@@ -61,7 +61,7 @@ $(document).ready(function () {
                             </div>\
                             <div class="add-comment">\
                                 <input type="text" placeholder="Add a comment..." class="comment-input">\
-                                <button class="post-btn">Post</button>\
+                                <button class="post-btn comment_btn" value="'+value.content.content_id+'">Post</button>\
                             </div>\
                         ';
 
@@ -77,55 +77,7 @@ $(document).ready(function () {
         });
     }
 
-    // Handle edit button click to open modal
-    $(document).on('click', '.edit_content_btn', function (e) {
-        e.preventDefault();
 
-        var clicked = $(this);
-        var contentId = clicked.val();
-        var contentData = JSON.parse(clicked.attr('data-content'));
-
-        openEditModal(contentId, contentData.content, contentData.image_url);
-    });
-
-    function openEditModal(contentId, content, imageUrl) {
-        $('#editContentId').val(contentId);
-        $('#editContent').val(content);
-        $('#editImage').val(imageUrl);
-
-        $('#editModal').modal('show'); // Show the modal using Bootstrap modal function
-    }
-
-    $(document).on('click', '#close_modal', function (e) {
-        e.preventDefault();
-        $('#editModal').modal('hide');
-    });
-
-
-    // Submit edit form
-    $('#editForm').submit(function (e) {
-        e.preventDefault(); // Prevent the default form submission behavior
-    
-        var form = $(this);
-        var formData = new FormData(form[0]); // Use FormData for file uploads
-    
-        $.ajax({
-            type: "POST",
-            url: "./Code/edit_content.php",
-            data: formData,
-            processData: false, // Prevent jQuery from processing the data
-            contentType: false, // Set content type to false for file uploads
-            success: function (response) {
-                console.log('Content updated successfully:', response);
-                $('#editModal').modal('hide'); // Hide the modal after successful update
-                // Reload or update content display as needed
-            },
-            error: function (xhr, status, error) {
-                console.error('Error updating content:', status, error);
-            }
-        });
-    });
-    
 
     // Handle delete content button click
     $(document).on('click', '.delete_content_btn', function (e) {
