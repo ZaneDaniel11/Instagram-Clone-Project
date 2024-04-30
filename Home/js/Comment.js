@@ -27,6 +27,7 @@ $(document).ready(function () {
         
     });
 
+
     $(document).on('click','.view_comment_btn',function (e) {
         e.preventDefault();
 
@@ -50,7 +51,7 @@ $(document).ready(function () {
                   append('<div class="reply_box border p-2 mb-2">\
                   <h6 class="border-bottom d-inline"> '+value.user['name']+'</h6>\
                    <p class="para">'+value.comments.comment+'</p>\
-                  <button class="btn btn-primary edit_comment._btn" value="'+value.comments.comment_id+'">Edit</button>\
+                  <button class="btn btn-primary edit_comment_btn data-bs-toggle="modal" data-bs-target="#editCommentModal" value="'+value.comments.comment_id+'">Edit</button>\
                  <button class="btn btn-success delete_comment_btn" value="'+value.comments.comment_id+'">Delete</button>\
                   <div class="ml-4 reply_section"></div>\
                  </div>\
@@ -60,6 +61,13 @@ $(document).ready(function () {
             }
         });
             
+    });
+
+    $(document).on('click','.edit_comment_btn' ,function (e) {
+        e.preventDefault();
+
+        $('#editCommentModal').modal('show');
+        
     });
 
     $(document).on('click','.view_comment_btn', function (e) {
