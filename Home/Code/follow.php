@@ -23,4 +23,25 @@ if(isset($_POST['load_user']))
     
 }
 
+if(isset($_POST['follow_btn']))
+{
+    $user_id = $_SESSION['auth_user_id'];
+    $followers_id = mysqli_escape_string($conn,$_POST['userid']);
+
+    $insert_followers_query = "INSERT INTO follow_tb (users_id,followers_id)VALUES('$user_id','$followers_id')";
+
+    $follow_conn_insert = mysqli_query($conn,$insert_followers_query);
+
+    if($follow_conn_insert)
+    {
+        echo 'inserted';
+    }
+    else
+    {
+        echo 'BOLOK';
+    }
+
+    
+}
+
 ?>

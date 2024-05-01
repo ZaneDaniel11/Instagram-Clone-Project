@@ -38,7 +38,7 @@ $(document).ready(function () {
 
         let data = {
             'userid':$userid,
-            'delete_btn':true
+            'follow_btn':true
         }
 
         $.ajax({
@@ -46,7 +46,7 @@ $(document).ready(function () {
             url: "./Code/follow.php",
             data: data,
             success: function (response) {
-                
+                alert(response);
             }
         });
 
