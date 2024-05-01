@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2024 at 05:31 AM
+-- Generation Time: May 01, 2024 at 05:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,153 +24,143 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Table structure for table `comment_tb`
 --
 
-CREATE TABLE `comments` (
+CREATE TABLE `comment_tb` (
   `comment_id` int(11) NOT NULL,
-  `content_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `comment_text` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contents`
---
-
-CREATE TABLE `contents` (
   `content_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `body` text DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `followers`
---
-
-CREATE TABLE `followers` (
-  `follower_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `follower_user_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `profile_picture` varchar(255) DEFAULT NULL
+  `comment` text NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `comment_tb`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `profile_picture`) VALUES
-(1, 'admin', 'admin', 'admin@gmail.com', 'shesh');
+INSERT INTO `comment_tb` (`comment_id`, `content_id`, `user_id`, `comment`, `date`) VALUES
+(1, 34, 1, 'dwada', '2024-04-28'),
+(32, 36, 1, 'dwa', '2024-04-30'),
+(41, 39, 1, 'sheshyawa21', '2024-05-01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content_tb`
+--
+
+CREATE TABLE `content_tb` (
+  `content_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content` varchar(50) NOT NULL,
+  `created` date NOT NULL DEFAULT current_timestamp(),
+  `image` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `content_tb`
+--
+
+INSERT INTO `content_tb` (`content_id`, `user_id`, `content`, `created`, `image`) VALUES
+(39, 1, 'shesh', '2024-05-01', '[\"663253c700d36.jpg\",\"663253c7012ba.jpg\",\"663253c701735.jpg\"]');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `follow_tb`
+--
+
+CREATE TABLE `follow_tb` (
+  `id` int(11) NOT NULL,
+  `users_id` int(11) NOT NULL,
+  `followers_id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `follow_tb`
+--
+
+INSERT INTO `follow_tb` (`id`, `users_id`, `followers_id`, `status`) VALUES
+(1, 1, 2, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_tb`
+--
+
+CREATE TABLE `users_tb` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users_tb`
+--
+
+INSERT INTO `users_tb` (`user_id`, `username`, `password`, `name`) VALUES
+(1, 'admin', 'password', 'Zane Daniel'),
+(2, 'nigga', 'password', 'Black American');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `comments`
+-- Indexes for table `comment_tb`
 --
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `content_id` (`content_id`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `comment_tb`
+  ADD PRIMARY KEY (`comment_id`);
 
 --
--- Indexes for table `contents`
+-- Indexes for table `content_tb`
 --
-ALTER TABLE `contents`
-  ADD PRIMARY KEY (`content_id`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `content_tb`
+  ADD PRIMARY KEY (`content_id`);
 
 --
--- Indexes for table `followers`
+-- Indexes for table `follow_tb`
 --
-ALTER TABLE `followers`
-  ADD PRIMARY KEY (`follower_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `follower_user_id` (`follower_user_id`);
+ALTER TABLE `follow_tb`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `users_tb`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
+ALTER TABLE `users_tb`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT for table `comment_tb`
 --
-ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `comment_tb`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `contents`
+-- AUTO_INCREMENT for table `content_tb`
 --
-ALTER TABLE `contents`
-  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `content_tb`
+  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT for table `followers`
+-- AUTO_INCREMENT for table `follow_tb`
 --
-ALTER TABLE `followers`
-  MODIFY `follower_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `follow_tb`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `users_tb`
 --
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`content_id`) REFERENCES `contents` (`content_id`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
---
--- Constraints for table `contents`
---
-ALTER TABLE `contents`
-  ADD CONSTRAINT `contents_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
---
--- Constraints for table `followers`
---
-ALTER TABLE `followers`
-  ADD CONSTRAINT `followers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `followers_ibfk_2` FOREIGN KEY (`follower_user_id`) REFERENCES `users` (`user_id`);
+ALTER TABLE `users_tb`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
