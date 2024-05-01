@@ -38,7 +38,7 @@ include('./inputs/header.php');
                 </button>
             </div>
             <div class="modal-body">
-            <form id="editForm" method="POST" action="./Code/content.php"> <!-- Add method and action attributes -->
+        <form id="editForm" method="POST" action="./Code/content.php"> <!-- Add method and action attributes -->
             <input type="hidden" id="editContentId" name="content_id">
             <div class="form-group">
                 <label for="editContent">Content:</label>
@@ -74,6 +74,34 @@ include('./inputs/header.php');
     </div>
   </div>
 </div>
+</div>
+
+<style>
+    .followers_container
+    {
+        position: absolute;
+        right: 0px;
+        top: 0;
+   
+        width: 300px;
+        margin-top: 50px;
+    }
+    .user-follow-con
+    {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 20px;
+        align-self: center;
+        margin-top: 30px;
+    }
+    .follow
+    {
+        border-radius: 20px;
+        width: 100px;
+        border-style: none;
+    }
+</style>
+<div class="followers_container">
 </div>
 <?php
 include('./inputs/footer.php');
