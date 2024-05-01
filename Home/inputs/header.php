@@ -41,7 +41,7 @@
                                                                             } else {
                                                                                 echo 'fail';
                                                                             } ?></a>
-                <a href="">Logout</a>
+                <a href="./Code/logout.php">Logout</a>
             </div>
 
         

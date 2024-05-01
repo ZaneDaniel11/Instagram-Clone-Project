@@ -25,9 +25,7 @@
     }
 </style>
 <div class="followers_container">
-    <div class="user-follow-con">
-        <p>Zane Pheonx</p> <button class="follow">Follow</button>
-    </div>
+    
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

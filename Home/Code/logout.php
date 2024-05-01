@@ -6,6 +6,5 @@
     unset($_SESSION['authuser_name']);
 
     $_SESSION['status'] = "Logout Successfully";
-    header('Location:facebook.com');
-
+    
 ?>
