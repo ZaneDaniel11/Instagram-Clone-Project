@@ -12,7 +12,7 @@ $(document).on('click', '.edit_content_btn', function (e) {
     openEditModal(contentId, contentData.content);
 });
 
-function openEditModal(contentId, content, imageUrl) {
+function openEditModal(contentId, content) {
     $('#editContentId').val(contentId);
     $('#editContent').val(content);
 
@@ -28,7 +28,7 @@ $(document).on('submit', '#editForm', function (e) {
     e.preventDefault();
 
     var form = $(this);
-    var formData = new FormData(form[0]); 
+    var formData = new FormData(form[0]);
 
     $.ajax({
         type: "POST",

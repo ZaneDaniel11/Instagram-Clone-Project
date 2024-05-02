@@ -38,7 +38,7 @@ include('./inputs/header.php');
                 </button>
             </div>
             <div class="modal-body">
-            <form id="editForm" method="POST" action="./Code/content.php"> <!-- Add method and action attributes -->
+        <form id="editForm" method="POST" action="./Code/content.php"> <!-- Add method and action attributes -->
             <input type="hidden" id="editContentId" name="content_id">
             <div class="form-group">
                 <label for="editContent">Content:</label>

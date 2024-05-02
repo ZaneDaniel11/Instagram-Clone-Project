@@ -2,7 +2,7 @@
 session_start();
 include('connection.php');
 
-if (!empty($_POST)) {
+if (isset($_POST['content_id'])) {
     $contentId = mysqli_real_escape_string($conn, $_POST['content_id']);
     $name = mysqli_real_escape_string($conn, $_POST['content']);
     $user_id = $_SESSION['auth_user_id'];
