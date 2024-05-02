@@ -32,7 +32,7 @@ $(document).ready(function () {
                         let contentHTML = '\
                             <div class="post-header d-flex justify-content-between">\
                                 <div><img src="../car-5186291.jpg" alt="Profile Picture" class="profile-pic">\
-                                    <span class="username">' + value.user.name + '</span>\
+                                    <span class="username">' + value.content.poster_name + '</span>\
                                 </div>\
                                 <div>\
                                     <button class="edit_content_btn" data-content=\'' + JSON.stringify(value.content) + '\' value="' + value.content.content_id + '">edit</button>\
@@ -50,7 +50,7 @@ $(document).ready(function () {
                                 100 likes\
                             </div>\
                             <div class="post-caption">\
-                                <span class="username">' + value.user.name + '</span>\
+                                <span class="username">' + value.content.poster_name + '</span>\
                                 <p class="content_edit">' + value.content.content + '</p>\
                             </div>\
                             <div class="post-comments">\
@@ -102,4 +102,6 @@ $(document).ready(function () {
             }
         });
     });
+
+    
 });

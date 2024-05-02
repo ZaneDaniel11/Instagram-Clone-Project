@@ -23,6 +23,15 @@
 </head>
 
 <body>
+<?php
+session_start();
+
+if (!isset($_SESSION['auth_user_id'])) {
+
+    header("Location: login.php");
+
+}
+?>
     <aside class="sidebar">
         <div class="SiteLogoContainer">
             <img src="./lib/style/images/instagramLogoLetter.png" alt="Instagram Logo" class="imgcontainer">
@@ -41,7 +50,7 @@
                                                                             } else {
                                                                                 echo 'fail';
                                                                             } ?></a>
-                <a href="">Logout</a>
+                <a href="./Code/logout.php">Logout</a>
             </div>
 
         
