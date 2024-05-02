@@ -27,7 +27,7 @@ if (isset($_POST['login_btn'])) {
     } else {
 
         $_SESSION['status'] = "Invalid Email Or Password";
-        header('Location:../Home/login.php');
+        header('Location:../Home/login2.php');
         exit();
     }
 }
