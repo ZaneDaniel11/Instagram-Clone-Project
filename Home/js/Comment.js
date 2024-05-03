@@ -1,6 +1,5 @@
 $(document).ready(function () {
-    
-    // alert('Commment js');
+
 
     $(document).on('click','.comment_btn', function (e) {
         e.preventDefault();
@@ -10,9 +9,9 @@ $(document).ready(function () {
         let content_id = clicked.closest('.add-comment').find('.comment_btn').val();
 
         let data = {
-            'comment':comment,
-            'content_id':content_id,
-            'comment_submit':true
+            'comment': comment,
+            'content_id': content_id,
+            'comment_submit': true
         }
 
         $.ajax({
@@ -27,17 +26,15 @@ $(document).ready(function () {
         
     });
 
-
     $(document).on('click','.view_comment_btn',function (e) {
         e.preventDefault();
 
         var click = $(this);
-
         var show_comment = click.val();
 
         var data = {
-            'show_comment':show_comment,
-            'show_comment_btn':true
+            'show_comment': show_comment,
+            'show_comment_btn': true
         }
 
         $.ajax({
@@ -63,28 +60,54 @@ $(document).ready(function () {
             
     });
 
-    $(document).on('click','.edit_comment_btn' ,function (e) {
+   
+    $(document).on('click', '.edit_comment_btn', function (e) {
         e.preventDefault();
 
-        $('#editCommentModal').modal('show');
-        
+
+        let commentText = $(this).closest('.reply_box').find('.para').text().trim();
+
+        $(this).closest('.reply_box').find('.para').replaceWith('<input type="text" class="form-control edited-comment" value="' + commentText + '">');
+
+       
+        $(this).text('Save');
+        $(this).removeClass('btn-primary edit_comment_btn').addClass('btn-success save_comment_btn');
     });
 
-    $(document).on('click','.view_comment_btn', function (e) {
-        e.preventDefault();
-        $('.comment-container').html("")
-     });
 
-    
-     $(document).on('click','.delete_comment_btn', function (e) {
+    $(document).on('click', '.save_comment_btn', function (e) {
+        e.preventDefault();
+
+
+        let editedComment = $(this).closest('.reply_box').find('.edited-comment').val();
+        let commentID = $(this).val();
+
+
+        $.ajax({
+            type: "POST",
+            url: "./Code/comment.php",
+            data: {
+                'edited_comment': editedComment,
+                'comment_id': commentID,
+                'edit_comment_submit': true
+            },
+            success: function (response) {
+               
+                location.reload();
+            }
+        });
+    });
+
+    // Delete comment button click event
+    $(document).on('click', '.delete_comment_btn', function (e) {
         e.preventDefault();
 
         var click = $(this);
         var delete_comment = click.val();
         
         var data = {
-            'delete_comment_id':delete_comment,
-            'delete_comment':true
+            'delete_comment_id': delete_comment,
+            'delete_comment': true
         }
 
         $.ajax({
@@ -93,10 +116,9 @@ $(document).ready(function () {
             data: data,
             success: function (response) {
                 location.reload();
-                
             }
         });
         
      });
-     
+
 });

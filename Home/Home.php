@@ -14,6 +14,12 @@ include('./inputs/header.php');
     border-style: solid;
     border-width: 1px;
     border-radius: 20px;
+    
+  }
+  .image-Container img
+  {
+    width:100%;
+    height: 100%;
   }
 
   .container {
@@ -38,10 +44,10 @@ include('./inputs/header.php');
             </div>
             <div class="modal-body">
         <form id="editForm" method="POST" action="./Code/content.php"> <!-- Add method and action attributes -->
-            <input type="hidden" id="editContentId" name="content_id">
+            <input type="text" id="editContentId" name="content_id">
             <div class="form-group">
                 <label for="editContent">Content:</label>
-                <textarea class="form-control" id="editContent" name="content" rows="3" required></textarea>
+                <input class="form-control editmodal_content" id="editContent"  name="content"></input>
             </div>
             <button type="submit" name="update_content" class="btn btn-primary">Update</button>
 
@@ -64,7 +70,11 @@ include('./inputs/header.php');
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+      <input type="text" class="form-control" id="editCommentId" placeholder="Example input placeholder">
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Comment</label>
+        <input type="text" class="form-control" id="EditUserComment" placeholder="Example input placeholder">
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

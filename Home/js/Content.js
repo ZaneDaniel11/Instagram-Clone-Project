@@ -51,7 +51,7 @@ $(document).ready(function () {
                             </div>\
                             <div class="post-caption">\
                                 <span class="username">' + value.content.poster_name + '</span>\
-                                <p class="content_edit">' + value.content.content + '</p>\
+                                <p class="content_edit" >' + value.content.content + '</p>\
                             </div>\
                             <div class="post-comments">\
                             </div>\
