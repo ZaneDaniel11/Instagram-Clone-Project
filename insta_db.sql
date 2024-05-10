@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2024 at 05:49 PM
+-- Generation Time: May 10, 2024 at 10:40 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,7 +42,14 @@ CREATE TABLE `comment_tb` (
 INSERT INTO `comment_tb` (`comment_id`, `content_id`, `user_id`, `comment`, `date`) VALUES
 (1, 34, 1, 'dwada', '2024-04-28'),
 (32, 36, 1, 'dwa', '2024-04-30'),
-(41, 39, 1, 'sheshyawa21', '2024-05-01');
+(41, 39, 1, 'sheshyawa21', '2024-05-01'),
+(44, 42, 2, 'shesh', '2024-05-03'),
+(47, 43, 1, 'shesh', '2024-05-03'),
+(48, 44, 3, 'shesh2111', '2024-05-03'),
+(49, 46, 1, 'sasasas', '2024-05-03'),
+(50, 46, 1, 'sasa', '2024-05-03'),
+(52, 49, 1, 'dwadaw', '2024-05-10'),
+(53, 49, 1, 'dawdw', '2024-05-10');
 
 -- --------------------------------------------------------
 
@@ -57,13 +64,6 @@ CREATE TABLE `content_tb` (
   `created` date NOT NULL DEFAULT current_timestamp(),
   `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `content_tb`
---
-
-INSERT INTO `content_tb` (`content_id`, `user_id`, `content`, `created`, `image`) VALUES
-(39, 1, 'shesh', '2024-05-01', '[\"663253c700d36.jpg\",\"663253c7012ba.jpg\",\"663253c701735.jpg\"]');
 
 -- --------------------------------------------------------
 
@@ -83,7 +83,12 @@ CREATE TABLE `follow_tb` (
 --
 
 INSERT INTO `follow_tb` (`id`, `users_id`, `followers_id`, `status`) VALUES
-(1, 1, 2, '');
+(3, 2, 1, ''),
+(4, 1, 3, ''),
+(5, 2, 1, ''),
+(6, 1, 2, ''),
+(7, 1, 2, ''),
+(8, 1, 3, '');
 
 -- --------------------------------------------------------
 
@@ -104,7 +109,8 @@ CREATE TABLE `users_tb` (
 
 INSERT INTO `users_tb` (`user_id`, `username`, `password`, `name`) VALUES
 (1, 'admin', 'password', 'Zane Daniel'),
-(2, 'nigga', 'password', 'Black American');
+(2, 'nigga', 'password', 'Black American'),
+(3, 'user1', 'password', 'Usermotherfucker');
 
 --
 -- Indexes for dumped tables
@@ -142,25 +148,25 @@ ALTER TABLE `users_tb`
 -- AUTO_INCREMENT for table `comment_tb`
 --
 ALTER TABLE `comment_tb`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `content_tb`
 --
 ALTER TABLE `content_tb`
-  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `follow_tb`
 --
 ALTER TABLE `follow_tb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users_tb`
 --
 ALTER TABLE `users_tb`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
