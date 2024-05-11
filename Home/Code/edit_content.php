@@ -2,6 +2,7 @@
 session_start();
 include('connection.php');
 
+// Edit Content
 if (isset($_POST['content_id'])) {
     $contentId = mysqli_real_escape_string($conn, $_POST['content_id']);
     $name = mysqli_real_escape_string($conn, $_POST['content']);
@@ -11,11 +12,10 @@ if (isset($_POST['content_id'])) {
     $update_conn = mysqli_query($conn, $sql_query);
 
     if ($update_conn) {
-      echo '<script>location.reload();</script>';
+        echo '<script>location.reload();</script>';
     } else {
         echo 'Error updating content: ' . mysqli_error($conn);
     }
 } else {
     echo "No data received.";
 }
-?>

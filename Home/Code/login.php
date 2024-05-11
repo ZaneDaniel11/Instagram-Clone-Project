@@ -2,6 +2,7 @@
 session_start();
 include('connection.php');
 
+// Log In Btn
 if (isset($_POST['login_btn'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);

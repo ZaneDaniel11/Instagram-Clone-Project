@@ -2,11 +2,11 @@
 session_start();
 include('connection.php');
 
-if(isset($_POST['load_user']))
-{
+// Load User
+if (isset($_POST['load_user'])) {
     $user_id = $_SESSION['auth_user_id'];
     $user_query = "SELECT *FROM users_tb WHERE user_id != '$user_id'";
-    $user_conn = mysqli_query($conn,$user_query);
+    $user_conn = mysqli_query($conn, $user_query);
 
     $array_result = [];
 
@@ -16,32 +16,23 @@ if(isset($_POST['load_user']))
         }
         header('Content-Type: application/json');
         echo json_encode($array_result);
+    } else {
+        echo 'shit Man';
     }
-    else{
-       echo 'shit Man';
-    }
-    
 }
 
-if(isset($_POST['follow_btn']))
-{
+// Function for Follow Btn
+if (isset($_POST['follow_btn'])) {
     $user_id = $_SESSION['auth_user_id'];
-    $followers_id = mysqli_escape_string($conn,$_POST['userid']);
+    $followers_id = mysqli_escape_string($conn, $_POST['userid']);
 
     $insert_followers_query = "INSERT INTO follow_tb (users_id,followers_id)VALUES('$user_id','$followers_id')";
 
-    $follow_conn_insert = mysqli_query($conn,$insert_followers_query);
+    $follow_conn_insert = mysqli_query($conn, $insert_followers_query);
 
-    if($follow_conn_insert)
-    {
+    if ($follow_conn_insert) {
         echo 'inserted';
-    }
-    else
-    {
+    } else {
         echo 'BOLOK';
     }
-
-    
 }
-
-?>

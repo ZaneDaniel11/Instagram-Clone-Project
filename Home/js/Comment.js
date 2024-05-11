@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    
+// Add comment
 
     $(document).on('click','.comment_btn', function (e) {
         e.preventDefault();
@@ -26,6 +28,8 @@ $(document).ready(function () {
         
     });
 
+    // View Comment
+
     $(document).on('click','.view_comment_btn',function (e) {
         e.preventDefault();
 
@@ -50,6 +54,7 @@ $(document).ready(function () {
                    <p class="para">'+value.comments.comment+'</p>\
                   <button class="btn btn-primary edit_comment_btn data-bs-toggle="modal" data-bs-target="#editCommentModal" value="'+value.comments.comment_id+'">Edit</button>\
                  <button class="btn btn-success delete_comment_btn" value="'+value.comments.comment_id+'">Delete</button>\
+                 <button class="btn btn-primary edit_comment_btn data-bs-toggle="modal" data-bs-target="" value="'+value.comments.comment_id+'">Reply</button>\
                   <div class="ml-4 reply_section"></div>\
                  </div>\
                   ');
@@ -59,8 +64,7 @@ $(document).ready(function () {
         });
             
     });
-
-   
+// Edit Comment
     $(document).on('click', '.edit_comment_btn', function (e) {
         e.preventDefault();
 

@@ -3,6 +3,7 @@ session_start();
 
 include('connection.php');
 
+// Load Content
 if (isset($_POST['Load_Content'])) {
     $user_id = $_SESSION['auth_user_id'];
     $content_query = "SELECT c.content_id, c.user_id AS poster_id, u.name AS poster_name, c.content, c.created, c.image
@@ -26,12 +27,12 @@ if (isset($_POST['Load_Content'])) {
         }
         header('Content-Type: application/json');
         echo json_encode($array_result);
-    }
-    else{
+    } else {
         echo $user_id;
     }
 }
 
+// Submit Content
 if (isset($_POST["submit"])) {
     $name = mysqli_real_escape_string($conn, $_POST['content']);
     $user_id = $_SESSION['auth_user_id'];
@@ -58,6 +59,7 @@ if (isset($_POST["submit"])) {
     }
 }
 
+// Delete
 if (isset($_POST['submit_delete'])) {
 
     $delete_content = mysqli_real_escape_string($conn, $_POST['content']);
@@ -68,13 +70,7 @@ if (isset($_POST['submit_delete'])) {
 
     if ($delete_connection) {
         echo 'yawa';
-    }
-    else
-    {
+    } else {
         echo 'yawa';
     }
 }
-
-
-
-?>

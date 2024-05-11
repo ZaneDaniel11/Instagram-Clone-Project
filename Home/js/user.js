@@ -1,7 +1,7 @@
 $(document).ready(function () {
     
     load_users_follow();
-
+// Load user 
     function load_users_follow()
     {
         let data = {
@@ -28,7 +28,7 @@ $(document).ready(function () {
         });
     }
 
-
+// Follow button
     $(document).on('click','.follow_btn', function (e) {
         e.preventDefault();
 

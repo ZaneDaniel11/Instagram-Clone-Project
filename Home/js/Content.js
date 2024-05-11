@@ -5,7 +5,7 @@ $(document).ready(function () {
         let data = {
             'Load_Content': true
         };
-
+// Add multiple picture
         $.ajax({
             type: "POST",
             url: "./Code/content.php",
