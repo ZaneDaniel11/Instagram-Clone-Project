@@ -47,7 +47,8 @@ $(document).ready(function () {
                             <div class="post-actions">\
                             </div>\
                             <div class="post-likes">\
-                                100 likes\
+                            <button onclick(addLike())>like</button>\
+                            <p> 100 likes</p>\
                             </div>\
                             <div class="post-caption">\
                                 <span class="username">' + value.content.poster_name + '</span>\

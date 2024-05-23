@@ -32,6 +32,7 @@
 <script src="./js/user.js"></script>
 <script src="./js/content_edit.js"></script>
 <script src="./js/Comment.js"></script>
+<script src="./js/like.js"></script>
 
 
 </body>
