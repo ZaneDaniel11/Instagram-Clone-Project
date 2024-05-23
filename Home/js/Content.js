@@ -47,7 +47,8 @@ $(document).ready(function () {
                             <div class="post-actions">\
                             </div>\
                             <div class="post-likes">\
-                            <button onclick(addLike())>like</button>\
+                            <span class="poster_id" value="'+value.content.poster_id +'">' + value.content.poster_id + '</span>\
+                            <button class="like_btn" value="'+value.content.content_id +'">like</button>\
                             <p> 100 likes</p>\
                             </div>\
                             <div class="post-caption">\
@@ -80,7 +81,29 @@ $(document).ready(function () {
         });
     }
 
-
+    $(document).on('click','.like_btn', function (e) {
+        e.preventDefault();
+        let click = $(this);
+        let poster_id = click.closest('.post-likes').find('.poster_id').text();
+        let content_id = click.val();
+        let like = 0;
+        
+        let data = {
+            'poster_id':poster_id,
+            'content_id':content_id,
+            'content_like':like,
+            'like_btn':true
+        };
+        
+        $.ajax({
+            type: "post",
+            url: "./Code/like.php",
+            data: data,
+            success: function (response) {
+                
+            }
+        });
+    });
 
     // Handle delete content button click
     $(document).on('click', '.delete_content_btn', function (e) {
