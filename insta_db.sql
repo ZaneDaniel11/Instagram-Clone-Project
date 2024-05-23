@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2024 at 10:40 AM
+-- Generation Time: May 23, 2024 at 08:29 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -89,6 +89,19 @@ INSERT INTO `follow_tb` (`id`, `users_id`, `followers_id`, `status`) VALUES
 (6, 1, 2, ''),
 (7, 1, 2, ''),
 (8, 1, 3, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification_tb`
+--
+
+CREATE TABLE `notification_tb` (
+  `id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `notif` varchar(50) NOT NULL,
+  `time` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
