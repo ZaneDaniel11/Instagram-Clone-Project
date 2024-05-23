@@ -20,7 +20,10 @@ if(isset($_POST['like_btn']))
         $update_like_query = "UPDATE like_tb SET user_like='$like' WHERE content_id='$content_id' AND user_id='$user_id'";
         $update_like_conn = mysqli_query($conn, $update_like_query);
         if($update_like_conn) {
-            echo 'update';  
+            $user_name = $_SESSION['authuser_name'];
+            $notif_message = "$user_name Liked your Content";
+            $notif_like = "INSERT INTO notification_tb (user_id,notif)VALUES('$poster_id','$notif_message')";
+            $notif_conn = mysqli_query($conn,$notif_like);
         } else {
             echo ' error update';
         }

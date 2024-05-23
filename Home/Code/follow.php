@@ -31,7 +31,10 @@ if (isset($_POST['follow_btn'])) {
     $follow_conn_insert = mysqli_query($conn, $insert_followers_query);
 
     if ($follow_conn_insert) {
-        echo 'inserted';
+        $user_name = $_SESSION['authuser_name'];
+        $notif_message = "$user_name Follow you";
+        $notif_like = "INSERT INTO notification_tb (user_id,notif)VALUES('$followers_id','$notif_message')";
+        $notif_conn = mysqli_query($conn,$notif_like);
     } else {
         echo 'BOLOK';
     }

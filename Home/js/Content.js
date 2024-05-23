@@ -47,7 +47,7 @@ $(document).ready(function () {
                             <div class="post-actions">\
                             </div>\
                             <div class="post-likes">\
-                            <span class="poster_id" value="'+value.content.poster_id +'">' + value.content.poster_id + '</span>\
+                            <input type="hidden" class="poster_id" value="'+value.content.poster_id +'"></input>\
                             <button class="like_btn" value="'+value.content.content_id +'">like</button>\
                             <p> 100 likes</p>\
                             </div>\
@@ -84,7 +84,7 @@ $(document).ready(function () {
     $(document).on('click','.like_btn', function (e) {
         e.preventDefault();
         let click = $(this);
-        let poster_id = click.closest('.post-likes').find('.poster_id').text();
+        let poster_id = click.closest('.post-likes').find('.poster_id').val();
         let content_id = click.val();
         let like = 0;
         
@@ -100,7 +100,7 @@ $(document).ready(function () {
             url: "./Code/like.php",
             data: data,
             success: function (response) {
-                
+                alert(response);
             }
         });
     });
