@@ -9,8 +9,11 @@ $(document).ready(function () {
         let clicked = $(this);
         let comment = clicked.closest('.add-comment').find('.comment-input').val();
         let content_id = clicked.closest('.add-comment').find('.comment_btn').val();
+        let owner_id = clicked.closest('.add-comment').find('.content-id').val();
 
+        // alert(owner_id);
         let data = {
+            'owner_id':owner_id,
             'comment': comment,
             'content_id': content_id,
             'comment_submit': true

@@ -6,14 +6,19 @@ include('connection.php');
 if (isset($_POST['comment_submit'])) {
     $content_id = mysqli_real_escape_string($conn, $_POST['content_id']);
     $comment = mysqli_real_escape_string($conn, $_POST['comment']);
+    $owner_id = mysqli_real_escape_string($conn, $_POST['owner_id']);
     $user = $_SESSION['auth_user_id'];
 
-    $insert_comment_sql = "INSERT INTO comment_tb (content_id,user_id,comment)VALUES('$content_id','$user','$comment')";
+    $insert_comment_sql = "INSERT INTO comment_tb (content_id,owner_id,user_id,comment)VALUES('$content_id','$owner_id','$user','$comment')";
 
     $connection = mysqli_query($conn, $insert_comment_sql);
 
     if ($connection) {
-        echo 'inserted';
+        $user_name = $_SESSION['authuser_name'];
+        $notif_message = "$user_name Commented on your content";
+
+        $notif_like = "INSERT INTO notification_tb (user_id,notif)VALUES('$owner_id','$notif_message')";
+        $notif_conn = mysqli_query($conn, $notif_like);
     } else {
         echo 'shit';
     }
