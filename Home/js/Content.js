@@ -49,7 +49,7 @@ $(document).ready(function () {
                             <div class="post-likes">\
                             <input type="hidden" class="poster_id" value="'+value.content.poster_id +'"></input>\
                             <button class="like_btn" value="'+value.content.content_id +'">like</button>\
-                            <p> 100 likes</p>\
+                            <p> '+value.content.content_like+' likes</p>\
                             </div>\
                             <div class="post-caption">\
                                 <span class="username">' + value.content.poster_name + '</span>\

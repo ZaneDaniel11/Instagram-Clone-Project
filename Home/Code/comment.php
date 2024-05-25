@@ -13,7 +13,10 @@ if (isset($_POST['comment_submit'])) {
     $connection = mysqli_query($conn, $insert_comment_sql);
 
     if ($connection) {
-        echo 'inserted';
+        $user_name = $_SESSION['authuser_name'];
+        $notif_message = "$user_name Comment on your Content";
+        $notif_like = "INSERT INTO notification_tb (user_id,notif)VALUES('$followers_id','$notif_message')";
+        $notif_conn = mysqli_query($conn,$notif_like);
     } else {
         echo 'shit';
     }
