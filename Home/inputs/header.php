@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="./lib/style/style2.css">
     <link rel="stylesheet" href="./lib/style/profile-style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- <script src="https://cdn.jsdelivr.net/gh/fontawsome/js/icons@5.0.3.js"></script> -->
-
+    <script src="./js/Notification.js"></script>
 
     <style>
         .nav-link {
@@ -38,12 +39,12 @@
         </div>
         <nav class="navigation">
             <div class="icon-bar">
-                <a href="#" class="nav-link"><i class="fas fa-home"></i>Home</a>
+                <a href="../Home/Home.php" class="nav-link"><i class="fas fa-home"></i>Home</a>
                 <a href="#" class="nav-link"><i class="fas fa-search"></i> Search</a>
                 <a href="#" class="nav-link"><i class="fas fa-compass"></i> Explore</a>
                 <a href="#" class="nav-link"><i class="fas fa-film"></i> Reels</a>
                 <a href="#" class="nav-link"><i class="fas fa-paper-plane"></i> Messages</a>
-                <a href="#" class="nav-link"><i class="fas fa-bell"></i> Notifications</a>
+                <a href="../Home/notification.php" class="notification-button"><i class="fas fa-bell"></i> Notifications</a>
                 <a class="nav-link" ata-bs-toggle="modal" data-bs-target="#exampleModal"><i class=" fas fa-plus-square" data-bs-toggle="modal" data-bs-target="#exampleModal"></i> Create</a>
                 <a href="#" class="nav-link"><i class="fas fa-user"></i> <?php if (isset($_SESSION['authuser_name'])) {
                                                                                 echo $_SESSION['authuser_name'];
