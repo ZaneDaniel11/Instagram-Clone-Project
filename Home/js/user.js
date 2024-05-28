@@ -18,7 +18,7 @@ $(document).ready(function () {
                 $.each(response, function (key, value) { 
 
                     $('.followers_container').append('<div class="user-follow-con">\
-                    <p>'+value.users['name']+'</p> <button class="follow follow_btn" value ='+value.users['user_id']+'>Follow</button>\
+                    <p>'+value.users['name']+'</p> <p value="'+value.users.user_id+'">view</p> <button class="follow follow_btn" value ='+value.users['user_id']+'>Follow</button>\
                 </div>\
                     ');
                      
