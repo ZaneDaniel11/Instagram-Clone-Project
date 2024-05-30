@@ -48,7 +48,7 @@ if (isset($_POST["submit"])) {
 
     $filesJson = json_encode($filesArray);
 
-    $query = "INSERT INTO content_tb (user_id, content, image, likes_count) VALUES ('$user_id', '$name', '$filesJson', 0)";
+    $query = "INSERT INTO content_tb (user_id, content, image, content_like) VALUES ('$user_id', '$name', '$filesJson', 0)";
 
     if (mysqli_query($conn, $query)) {
         header('location:../Home.php');
