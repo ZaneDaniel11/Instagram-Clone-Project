@@ -12,7 +12,7 @@ $(document).ready(function () {
             data: data,
             success: function (response) {
                 console.log(response);
-                $('.content-container').empty(); // Clear existing content
+                $('.content-container').empty(); 
 
                 if (Array.isArray(response)) {
                     response.forEach(function (value) {
@@ -75,7 +75,7 @@ $(document).ready(function () {
                         $('.content-container').append(contentHTML);
                     });
 
-                    // Add event listeners for navigation buttons
+               
                     $('.left-btn').on('click', function() {
                         navigateImages($(this).siblings('.post-images'), -1);
                     });
@@ -84,7 +84,7 @@ $(document).ready(function () {
                         navigateImages($(this).siblings('.post-images'), 1);
                     });
 
-                    // Add event listener for key press
+             
                     $(document).on('keydown', function(event) {
                         if (event.key === 'ArrowLeft') {
                             $('.left-btn:visible').click();
@@ -102,7 +102,7 @@ $(document).ready(function () {
         });
     }
 
-    // Navigation function
+
     function navigateImages(container, direction) {
         let images = container.find('.image-item');
         let currentIndex = images.filter(':visible').index();
@@ -111,7 +111,7 @@ $(document).ready(function () {
         images.eq(newIndex).show();
     }
 
-    // Initial setup to show the first image
+
     $(document).on('content-loaded', function() {
         $('.post-images').each(function() {
             $(this).find('.image-item').hide().first().show();
