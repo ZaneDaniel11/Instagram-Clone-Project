@@ -126,6 +126,6 @@ $(document).ready(function() {
         }
     }
     let user_id = getUserIDFromURL();
-    headerusercontent(user_id)
+    headerusercontent(user_id);
     loadUserContent(user_id);
 });
