@@ -128,5 +128,25 @@ $(document).ready(function () {
         });
     });
 
+    // $(document).on('click','.view_profile', function (e) {
+    //     e.preventDefault();
+    //     let click = $(this);
+    //     let user_id = click.val();
+    
+    //     let data = {
+    //         'user_id': user_id,
+    //         'view_profile':true
+    //     }
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "./Code/profile.php",
+    //         data: data,
+            
+    //         success: function (response) {
+    //          console.log(response);
+    //         }
+            
+    //     });
+    // });
     
 });
