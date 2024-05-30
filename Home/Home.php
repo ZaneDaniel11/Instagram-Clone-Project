@@ -27,6 +27,53 @@ include('./inputs/header.php');
     background-color: none;
     border-style: none;
   }
+  .post-images-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    opacity: 0.8;
+}
+
+.nav-btn:hover {
+    opacity: 1;
+}
+
+.left-btn {
+    left: 10px;
+}
+
+.right-btn {
+    right: 10px;
+}
+
+.image-item {
+    display: none; /* Hide all images by default */
+}
+
+.image-item:first-child {
+    display: block; /* Show the first image */
+}
+
+.post-images {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+  
 </style>
 <div class="container" style="display: block;">
 

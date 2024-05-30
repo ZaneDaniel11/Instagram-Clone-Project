@@ -5,7 +5,7 @@ $(document).ready(function () {
         let data = {
             'Load_Content': true
         };
-// Add multiple picture
+
         $.ajax({
             type: "POST",
             url: "./Code/content.php",
@@ -21,56 +21,76 @@ $(document).ready(function () {
                         let imagesHTML = '';
                         var images = JSON.parse(value.content.image);
 
-                        if (images.length > 1) {
-                            images.forEach(function (image) {
-                                imagesHTML += '<div class="image-Container d-flex align-content-stretch flex-nowrap"><img src="Code/uploads/' + image + '" alt="image1"></div>';
-                            });
-                        } else {
-                            imagesHTML += '<img src="Code/uploads/' + images + '" alt="image">';
-                        }
+                        images.forEach(function (image, index) {
+                            imagesHTML += '<div class="image-item" data-index="' + index + '"><img src="Code/uploads/' + image + '" alt="image"></div>';
+                        });
 
                         let contentHTML = '\
-                            <div class="post-header d-flex justify-content-between">\
-                                <div><img src="../car-5186291.jpg" alt="Profile Picture" class="profile-pic">\
+                            <div class="post">\
+                                <div class="post-header d-flex justify-content-between">\
+                                    <div><img src="../car-5186291.jpg" alt="Profile Picture" class="profile-pic">\
+                                        <span class="username">' + value.content.poster_name + '</span>\
+                                    </div>\
+                                    <div>\
+                                        <button class="edit_content_btn" data-content=\'' + JSON.stringify(value.content) + '\' value="' + value.content.content_id + '">edit</button>\
+                                    </div>\
+                                    <div>\
+                                        <button class="delete_content_btn" value="' + value.content.content_id + '">X</button>\
+                                    </div>\
+                                </div>\
+                                <div class="post-images-wrapper">\
+                                    <button class="nav-btn left-btn">←</button>\
+                                    <div class="post-images d-flex flex-wrap">\
+                                        ' + imagesHTML + '\
+                                    </div>\
+                                    <button class="nav-btn right-btn">→</button>\
+                                </div>\
+                                <div class="post-actions">\
+                                </div>\
+                                <div class="post-likes">\
+                                <input type="hidden" class="poster_id" value="'+value.content.poster_id +'"></input>\
+                                <button class="like_btn" value="'+value.content.content_id +'">like</button>\
+                                <p> '+value.content.content_like+' likes</p>\
+                                </div>\
+                                <div class="post-caption">\
                                     <span class="username">' + value.content.poster_name + '</span>\
+                                    <p class="content_edit" >' + value.content.content + '</p>\
                                 </div>\
-                                <div>\
-                                    <button class="edit_content_btn" data-content=\'' + JSON.stringify(value.content) + '\' value="' + value.content.content_id + '">edit</button>\
+                                <div class="post-comments">\
                                 </div>\
-                                <div>\
-                                    <button class="delete_content_btn" value="' + value.content.content_id + '">X</button>\
+                                <div class="post-timestamp">\
+                                    ' + value.content.created + '\
+                                    <button class="post-btn view_comment_btn" value="'+value.content.content_id+'" >view Comment</button>\
                                 </div>\
-                            </div>\
-                            <div class="post-Container d-flex  flex-nowrap">\
-                                ' + imagesHTML + '\
-                            </div>\
-                            <div class="post-actions">\
-                            </div>\
-                            <div class="post-likes">\
-                            <input type="hidden" class="poster_id" value="'+value.content.poster_id +'"></input>\
-                            <button class="like_btn" value="'+value.content.content_id +'">like</button>\
-                            <p> '+value.content.content_like+' likes</p>\
-                            </div>\
-                            <div class="post-caption">\
-                                <span class="username">' + value.content.poster_name + '</span>\
-                                <p class="content_edit" >' + value.content.content + '</p>\
-                            </div>\
-                            <div class="post-comments">\
-                            </div>\
-                            <div class="post-timestamp">\
-                                ' + value.content.created + '\
-                                <button class="post-btn view_comment_btn" value="'+value.content.content_id+'" >view Comment</button>\
-                            </div>\
-                            <div class="add-comment">\
-                                <input type="hidden" class="content-id" value="'+value.content.poster_id+'"></input>\
-                                <input type="text" placeholder="Add a comment..." class="comment-input">\
-                                <button class="post-btn comment_btn" value="'+value.content.content_id+'">Post</button>\
-                            </div>\
-                            <div class="comment-container">\
+                                <div class="add-comment">\
+                                    <input type="hidden" class="content-id" value="'+value.content.poster_id+'"></input>\
+                                    <input type="text" placeholder="Add a comment..." class="comment-input">\
+                                    <button class="post-btn comment_btn" value="'+value.content.content_id+'">Post</button>\
+                                </div>\
+                                <div class="comment-container">\
+                                </div>\
                             </div>\
                         ';
 
                         $('.content-container').append(contentHTML);
+                    });
+
+                    // Add event listeners for navigation buttons
+                    $('.left-btn').on('click', function() {
+                        navigateImages($(this).siblings('.post-images'), -1);
+                    });
+
+                    $('.right-btn').on('click', function() {
+                        navigateImages($(this).siblings('.post-images'), 1);
+                    });
+
+                    // Add event listener for key press
+                    $(document).on('keydown', function(event) {
+                        if (event.key === 'ArrowLeft') {
+                            $('.left-btn:visible').click();
+                        } else if (event.key === 'ArrowRight') {
+                            $('.right-btn:visible').click();
+                        }
                     });
                 } else {
                     console.log('Invalid response format.');
@@ -81,6 +101,23 @@ $(document).ready(function () {
             }
         });
     }
+
+    // Navigation function
+    function navigateImages(container, direction) {
+        let images = container.find('.image-item');
+        let currentIndex = images.filter(':visible').index();
+        images.hide();
+        let newIndex = (currentIndex + direction + images.length) % images.length;
+        images.eq(newIndex).show();
+    }
+
+    // Initial setup to show the first image
+    $(document).on('content-loaded', function() {
+        $('.post-images').each(function() {
+            $(this).find('.image-item').hide().first().show();
+        });
+    });
+
 
     $(document).on('click','.like_btn', function (e) {
         e.preventDefault();
@@ -128,25 +165,5 @@ $(document).ready(function () {
         });
     });
 
-    // $(document).on('click','.view_profile', function (e) {
-    //     e.preventDefault();
-    //     let click = $(this);
-    //     let user_id = click.val();
-    
-    //     let data = {
-    //         'user_id': user_id,
-    //         'view_profile':true
-    //     }
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "./Code/profile.php",
-    //         data: data,
-            
-    //         success: function (response) {
-    //          console.log(response);
-    //         }
-            
-    //     });
-    // });
     
 });
